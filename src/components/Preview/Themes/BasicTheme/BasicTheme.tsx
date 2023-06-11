@@ -8,6 +8,7 @@ import {
   ResumeData,
   Referee,
   WorkExperienceItem,
+  OtherExperienceItem,
 } from "../../../../App";
 import styles from "./BasicTheme.module.scss";
 
@@ -35,6 +36,9 @@ export default function BasicTheme({ resumeData }: { resumeData: ResumeData }) {
       ) : null}
       {resumeData.workExperience.length > 0 ? (
         <WorkExperienceSection workExperience={resumeData.workExperience} />
+      ) : null}{" "}
+      {resumeData.otherExperiences.length > 0 ? (
+        <OtherExperienceSection otherExperience={resumeData.otherExperiences} />
       ) : null}{" "}
       {resumeData.skills.length > 0 ? (
         <SkillsSection skills={resumeData.skills} />
@@ -194,6 +198,46 @@ function WorkExperienceSection({
   );
 }
 
+function OtherExperienceSection({
+  otherExperience,
+}: {
+  otherExperience: OtherExperienceItem[];
+}) {
+  return (
+    <>
+      <h2>OTHER EXPERIENCES</h2>
+      <section>
+        <ol>
+          <table className={styles.otherExperienceTable}>
+            {otherExperience.map((element) => (
+              <li key={JSON.stringify(element)}>
+                <tr>
+                  <td colSpan={2}>
+                    <h3>{element.place}</h3>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Work:</td>
+                  <td>{element.work}</td>
+                </tr>
+                <tr>
+                  <td>Time:</td>
+                  <td>
+                    <DateRangeDisplay
+                      startDate={element.startDate}
+                      endDate={element.endDate}
+                    />
+                  </td>
+                </tr>
+              </li>
+            ))}
+          </table>
+        </ol>
+      </section>
+    </>
+  );
+}
+
 function SkillsSection({ skills }: { skills: string[] }) {
   return (
     <>
@@ -251,20 +295,41 @@ function RefereesSection({ referees }: { referees: Referee[] }) {
   );
 }
 
-function DateRangeDisplay(props: {
+export function DateRangeDisplay({
+  endDate,
+  startDate,
+}: {
   startDate: DateTime | null;
   endDate: DateTime | null;
 }) {
+  if (endDate === null && startDate === null) {
+    return null;
+  }
+
+  if (endDate === null) {
+    return <>{startDate?.year} – Present</>;
+  }
+
+  if (startDate === null) {
+    return <>{endDate.year}</>;
+  }
+
+  if (startDate.month === endDate.month && startDate.year === endDate.year) {
+    return <>{startDate.toLocaleString({ month: "long", year: "numeric" })}</>;
+  }
+
+  if (startDate.year === endDate.year) {
+    return (
+      <>
+        {startDate.toLocaleString({ month: "long" })} –{" "}
+        {endDate.toLocaleString({ month: "long", year: "numeric" })}
+      </>
+    );
+  }
+
   return (
     <>
-      {props.startDate?.year}{" "}
-      {props.endDate !== null &&
-      props.endDate.year === props.startDate?.year ? null : (
-        <>
-          {props.startDate !== null ? "–" : null}
-          {props.endDate === null ? "Present" : props.endDate.year}
-        </>
-      )}
+      {startDate.year} - {endDate.year}
     </>
   );
 }

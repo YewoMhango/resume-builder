@@ -129,14 +129,21 @@ export default function App() {
             localData.personalDetails.birthDate &&
             DateTime.fromISO(localData.personalDetails.birthDate),
         },
-        educationalBackground: localData.educationalBackground.map(
+        educationalBackground: (localData.educationalBackground || []).map(
           (value: { startDate?: string; endDate?: string }) => ({
             ...value,
             startDate: value.startDate && DateTime.fromISO(value.startDate),
             endDate: value.endDate && DateTime.fromISO(value.endDate),
           })
         ),
-        workExperience: localData.workExperience.map(
+        workExperience: (localData.workExperience || []).map(
+          (value: { startDate?: string; endDate?: string }) => ({
+            ...value,
+            startDate: value.startDate && DateTime.fromISO(value.startDate),
+            endDate: value.endDate && DateTime.fromISO(value.endDate),
+          })
+        ),
+        otherExperiences: (localData.otherExperiences || []).map(
           (value: { startDate?: string; endDate?: string }) => ({
             ...value,
             startDate: value.startDate && DateTime.fromISO(value.startDate),

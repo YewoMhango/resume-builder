@@ -10,6 +10,10 @@
     width: 6.27in;
   }
 
+  * {
+    font-size: inherit;
+  }
+
   h1,
   h2 {
     text-transform: uppercase;
@@ -21,7 +25,6 @@
   }
 
   h2 {
-    font-size: 12pt;
     margin-top: 20px;
   }
 
@@ -39,6 +42,7 @@
 
   .educational-background-table,
   .work-experience-table,
+  .other-experience-table,
   .referees-table {
     width: 100%;
 
@@ -46,7 +50,6 @@
       padding-left: 20px;
 
       h3 {
-        font-size: inherit;
         margin: 0;
       }
     }

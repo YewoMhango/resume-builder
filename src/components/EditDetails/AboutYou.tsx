@@ -31,7 +31,7 @@ export default function AboutYou({
             onBlur={(e) => setAbout(e.target.value)}
             multiline
             minRows={4}
-            variant="filled"
+            variant="outlined"
           />
         </Box>
       </AccordionDetails>

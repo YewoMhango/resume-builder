@@ -16,12 +16,12 @@ import {
 } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
 import { DatePicker } from "@mui/x-date-pickers";
+import { DateTime } from "luxon";
 import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import ReactPhoneInput from "react-phone-input-material-ui";
 
 import { Gender, MaritalStatus, PersonalDetails } from "../../App";
-import { DateTime } from "luxon";
 
 export default function PersonalDetailsInputs({
   personalDetails,

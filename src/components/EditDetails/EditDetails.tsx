@@ -7,6 +7,7 @@ import WorkExperience from "./WorkExperience";
 import Skills from "./Skills";
 import Referees from "./Referees";
 import AboutYou from "./AboutYou";
+import OtherExperience from "./OtherExperiences";
 
 export default function EditDetails({
   resumeData,
@@ -39,6 +40,12 @@ export default function EditDetails({
         workExperience={resumeData.workExperience}
         setWorkExperience={(newDetails) =>
           setResumeData({ ...resumeData, workExperience: newDetails })
+        }
+      />
+      <OtherExperience
+        otherExperience={resumeData.otherExperiences}
+        setOtherExperience={(newDetails) =>
+          setResumeData({ ...resumeData, otherExperiences: newDetails })
         }
       />
       <Skills
