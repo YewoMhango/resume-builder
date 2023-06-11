@@ -1,0 +1,21 @@
+diff --git a/packages/react/package.json b/packages/react/package.json
+index 7f48f52..31055e5 100644
+--- a/packages/react/package.json
++++ b/packages/react/package.json
+@@ -41,8 +41,14 @@
+   "module": "./dist/smooth-dnd-react.mjs",
+   "exports": {
+     ".": {
+-      "import": "./dist/smooth-dnd-react.mjs",
+-      "require": "./dist/smooth-dnd-react.umd.js"
++      "import": {
++        "types": "./dist/index.d.ts",
++        "default": "./dist/smooth-dnd-react.mjs"
++      },
++      "require": {
++        "types": "./dist/index.d.ts",
++        "default": "./dist/smooth-dnd-react.umd.js"
++      }
+     }
+   },
+   "files": [

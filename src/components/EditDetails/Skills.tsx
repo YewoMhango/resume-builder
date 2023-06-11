@@ -19,8 +19,7 @@ import {
   DragHandle,
 } from "@mui/icons-material";
 import { arrayMoveImmutable } from "array-move";
-
-import { Container, Draggable } from "../../react-smooth-dnd/src";
+import { Container, Draggable } from "@smooth-dnd/react";
 
 export default function Skills({
   skills,

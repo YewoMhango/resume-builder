@@ -15,7 +15,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { arrayMoveImmutable } from "array-move";
 
 import { EducationalBackgroundItem } from "../../App";
-import { Container, Draggable } from "../../react-smooth-dnd/src";
+import { Container, Draggable } from "@smooth-dnd/react";
 
 export default function EducationalBackground({
   educationalBackground,

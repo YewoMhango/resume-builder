@@ -13,9 +13,9 @@ import {
 import { Add, Delete, DragHandle, ExpandMore } from "@mui/icons-material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { arrayMoveImmutable } from "array-move";
+import { Container, Draggable } from "@smooth-dnd/react";
 
 import { WorkExperienceItem } from "../../App";
-import { Container, Draggable } from "../../react-smooth-dnd/src";
 
 export default function WorkExperience({
   workExperience,
