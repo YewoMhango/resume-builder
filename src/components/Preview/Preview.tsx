@@ -15,11 +15,7 @@ import BasicTheme from "./Themes/BasicTheme/BasicTheme";
 export default function Preview({ resumeData }: { resumeData: ResumeData }) {
   return (
     <Container maxWidth="md" className={styles.previewContainer}>
-      <Box
-        className="hide-when-printing"
-        sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}
-      >
-        <Typography display="inline-flex">Theme:</Typography>&nbsp;
+      <Box className="hide-when-printing">
         <FormControl sx={{ width: "fit-content" }} size="small">
           <InputLabel id="theme-label">Theme</InputLabel>
           <Select labelId="theme-label" label="Theme" defaultValue="Basic">
