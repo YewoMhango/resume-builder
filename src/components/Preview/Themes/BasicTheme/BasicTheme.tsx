@@ -201,7 +201,7 @@ function SkillsSection({ skills }: { skills: string[] }) {
       <section>
         <ul className={styles.skillsList}>
           {skills.map((skill) => (
-            <li>{skill}</li>
+            <li key={skill}>{skill}</li>
           ))}
         </ul>
       </section>
