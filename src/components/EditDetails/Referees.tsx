@@ -11,10 +11,10 @@ import {
   Typography,
 } from "@mui/material";
 import { ExpandMore, Add, Delete, DragHandle } from "@mui/icons-material";
-import { Container, Draggable } from "@smooth-dnd/react";
 import { arrayMoveImmutable } from "array-move";
 
 import { Referee } from "../../App";
+import { Container, Draggable } from "../../react-smooth-dnd/src";
 
 export default function Referees({
   referees,
@@ -40,10 +40,12 @@ export default function Referees({
     removedIndex,
     addedIndex,
   }: {
-    removedIndex: number;
-    addedIndex: number;
+    removedIndex: number | null;
+    addedIndex: number | null;
   }) => {
-    setReferees(arrayMoveImmutable(referees, removedIndex, addedIndex));
+    setReferees(
+      arrayMoveImmutable(referees, removedIndex || 0, addedIndex || 0)
+    );
   };
 
   return (

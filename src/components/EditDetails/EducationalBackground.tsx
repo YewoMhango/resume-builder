@@ -12,10 +12,10 @@ import {
 } from "@mui/material";
 import { ExpandMore, Add, Delete, DragHandle } from "@mui/icons-material";
 import { DatePicker } from "@mui/x-date-pickers";
-import { Container, Draggable } from "@smooth-dnd/react";
 import { arrayMoveImmutable } from "array-move";
 
 import { EducationalBackgroundItem } from "../../App";
+import { Container, Draggable } from "../../react-smooth-dnd/src";
 
 export default function EducationalBackground({
   educationalBackground,
@@ -43,11 +43,15 @@ export default function EducationalBackground({
     removedIndex,
     addedIndex,
   }: {
-    removedIndex: number;
-    addedIndex: number;
+    removedIndex: number | null;
+    addedIndex: number | null;
   }) => {
     setEducationalBackground(
-      arrayMoveImmutable(educationalBackground, removedIndex, addedIndex)
+      arrayMoveImmutable(
+        educationalBackground,
+        removedIndex || 0,
+        addedIndex || 0
+      )
     );
   };
 

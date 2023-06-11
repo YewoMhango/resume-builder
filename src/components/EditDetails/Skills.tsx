@@ -18,8 +18,9 @@ import {
   Add,
   DragHandle,
 } from "@mui/icons-material";
-import { Container, Draggable } from "@smooth-dnd/react";
 import { arrayMoveImmutable } from "array-move";
+
+import { Container, Draggable } from "../../react-smooth-dnd/src";
 
 export default function Skills({
   skills,
@@ -47,11 +48,11 @@ export default function Skills({
     removedIndex,
     addedIndex,
   }: {
-    removedIndex: number;
-    addedIndex: number;
+    removedIndex: number | null;
+    addedIndex: number | null;
   }) => {
     console.log({ removedIndex, addedIndex });
-    setSkills(arrayMoveImmutable(skills, removedIndex, addedIndex));
+    setSkills(arrayMoveImmutable(skills, removedIndex || 0, addedIndex || 0));
   };
 
   return (

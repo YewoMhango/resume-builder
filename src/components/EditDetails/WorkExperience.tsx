@@ -12,10 +12,10 @@ import {
 } from "@mui/material";
 import { Add, Delete, DragHandle, ExpandMore } from "@mui/icons-material";
 import { DatePicker } from "@mui/x-date-pickers";
-import { Container, Draggable } from "@smooth-dnd/react";
 import { arrayMoveImmutable } from "array-move";
 
 import { WorkExperienceItem } from "../../App";
+import { Container, Draggable } from "../../react-smooth-dnd/src";
 
 export default function WorkExperience({
   workExperience,
@@ -42,11 +42,11 @@ export default function WorkExperience({
     removedIndex,
     addedIndex,
   }: {
-    removedIndex: number;
-    addedIndex: number;
+    removedIndex: number | null;
+    addedIndex: number | null;
   }) => {
     setWorkExperience(
-      arrayMoveImmutable(workExperience, removedIndex, addedIndex)
+      arrayMoveImmutable(workExperience, removedIndex || 0, addedIndex || 0)
     );
   };
 
