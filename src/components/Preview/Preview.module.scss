@@ -1,0 +1,13 @@
+.preview-page {
+  box-shadow: 0 0 10px #bbb;
+}
+
+@media print {
+  .preview-container {
+    padding: 0 !important;
+  }
+
+  .preview-page {
+    box-shadow: none;
+  }
+}

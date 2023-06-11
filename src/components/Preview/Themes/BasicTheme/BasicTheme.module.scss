@@ -1,0 +1,58 @@
+.basic-theme-container {
+  padding: 1in;
+  font-family: "Times New Roman";
+  font-size: 12pt;
+  line-height: 1.5;
+  width: 8.27in;
+
+  @media print {
+    padding: 0;
+    width: 6.27in;
+  }
+
+  h1,
+  h2 {
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: 14pt;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 12pt;
+    margin-top: 20px;
+  }
+
+  .personal-details,
+  .skills-list {
+    column-count: 2;
+    column-width: auto;
+  }
+
+  .skills-list {
+    li {
+      padding-left: 10px;
+    }
+  }
+
+  .educational-background-table,
+  .work-experience-table,
+  .referees-table {
+    width: 100%;
+
+    td {
+      padding-left: 20px;
+
+      h3 {
+        font-size: inherit;
+        margin: 0;
+      }
+    }
+
+    li {
+      padding-bottom: 10px;
+    }
+  }
+}
