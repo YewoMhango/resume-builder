@@ -1,7 +1,7 @@
-diff --git a/packages/react/package.json b/packages/react/package.json
+diff --git a/node_modules/@smooth-dnd/react/package.json b/node_modules/@smooth-dnd/react/package.json
 index 7f48f52..31055e5 100644
---- a/packages/react/package.json
-+++ b/packages/react/package.json
+--- a/node_modules/@smooth-dnd/react/package.json
++++ b/node_modules/@smooth-dnd/react/package.json
 @@ -41,8 +41,14 @@
    "module": "./dist/smooth-dnd-react.mjs",
    "exports": {
