@@ -28,13 +28,13 @@ export default function Skills({
   skills: string[];
   setSkills: (skills: string[]) => void;
 }) {
-  let [newSkill, setNewSkill] = useState<string | null>(null);
+  let [addingNewSkill, setAddingNewSkill] = useState(false);
 
-  const addNewSkill = () => {
+  const addNewSkill = (newSkill: string) => {
     if (newSkill) {
       setSkills([...skills, newSkill]);
     }
-    setNewSkill(null);
+    setAddingNewSkill(false);
   };
 
   const updateSkill = (index: number, skill: string) => {
@@ -103,21 +103,22 @@ export default function Skills({
               </Draggable>
             ))}
           </Container>
-          {newSkill != null ? (
-            <ListItem key={newSkill}>
+          {addingNewSkill ? (
+            <ListItem key={"new skill"}>
               <ListItemIcon sx={{ minWidth: "24px" }}>
                 <Circle sx={{ fontSize: ".6rem", fill: "black" }} />
               </ListItemIcon>
               <TextField
-                value={newSkill || undefined}
                 variant="standard"
                 autoFocus
-                onChange={(e) => setNewSkill(e.target.value)}
-                onBlur={addNewSkill}
+                onBlur={(e) => addNewSkill(e.target.value)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    addNewSkill();
-                    setNewSkill("");
+                    addNewSkill(
+                      (e.target as unknown as { value: string }).value
+                    );
+                    (e.target as unknown as { value: string }).value = "";
+                    setAddingNewSkill(true);
                   }
                 }}
               />
@@ -127,7 +128,7 @@ export default function Skills({
             <Button
               variant="outlined"
               startIcon={<Add />}
-              onClick={() => setNewSkill("")}
+              onClick={() => setAddingNewSkill(true)}
             >
               Add Skill
             </Button>
