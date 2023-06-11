@@ -10,6 +10,7 @@ export default function Footer() {
         backgroundColor: "#eee",
         paddingTop: "2rem",
         paddingBottom: "2rem",
+        textAlign: "center",
       }}
     >
       <Container maxWidth="lg">
