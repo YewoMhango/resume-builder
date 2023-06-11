@@ -36,18 +36,6 @@
   "scripts": {
     "build": "vite build"
   },
-  "types": "./dist/index.d.ts",
-  "main": "./dist/smooth-dnd-react.umd.js",
-  "module": "./dist/smooth-dnd-react.mjs",
-  "exports": {
-    ".": {
-      "import": "./dist/smooth-dnd-react.mjs",
-      "require": "./dist/smooth-dnd-react.umd.js"
-    }
-  },
-  "files": [
-    "dist"
-  ],
   "devDependencies": {
     "@types/node": "^18.16.0",
     "@types/prop-types": "^15.7.5",

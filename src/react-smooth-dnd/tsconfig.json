@@ -22,5 +22,4 @@
     "noImplicitThis": false
   },
   "include": ["src/**/*", "types/**/*.d.ts"],
-  "references": [{ "path": "../core" }]
 }

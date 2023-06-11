@@ -269,11 +269,11 @@ function DateRangeDisplay(props: {
   );
 }
 
-function allFieldsAreEmpty(obj: { [key: string]: any }) {
-  for (let key of Object.keys(obj)) {
-    if (obj[key]) {
-      return false;
-    }
-  }
-  return true;
-}
+// function allFieldsAreEmpty(obj: { [key: string]: any }) {
+//   for (let key of Object.keys(obj)) {
+//     if (obj[key]) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
