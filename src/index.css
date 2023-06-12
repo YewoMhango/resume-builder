@@ -1,27 +1,70 @@
+/* Times New Roman */
+
 @font-face {
   font-family: "Times New Roman";
-  src: url("/public/fonts/Times New Roman/times new roman.ttf");
+  src: url("/fonts/Times New Roman/times new roman.ttf");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Times New Roman";
-  src: url("/public/fonts/Times New Roman/times\ new\ roman\ italic.ttf");
-  font-weight: 400;
-  font-style: italic;
-}
-@font-face {
-  font-family: "Times New Roman";
-  src: url("/public/fonts/Times New Roman/times\ new\ roman\ bold.ttf");
+  src: url("/fonts/Times New Roman/times\ new\ roman\ bold.ttf");
   font-weight: bold;
   font-style: normal;
 }
+
+/* Bert Sana */
+
 @font-face {
-  font-family: "Times New Roman";
-  src: url("/public/fonts/Times New Roman/times\ new\ roman\ bold\ italic.ttf");
-  font-weight: bold;
-  font-style: italic;
+  font-family: "Bert Sans";
+  src: url(/fonts/Bert-Sans/BertSans-Black.ttf);
+  font-weight: 900;
 }
+
+@font-face {
+  font-family: "Bert Sans";
+  src: url(/fonts/Bert-Sans/BertSans-Bold.ttf);
+  font-weight: 700;
+}
+
+/* Lato */
+
+@font-face {
+  font-family: Lato;
+  src: url(/fonts/Lato/Lato-Bold.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Lato;
+  src: url(/fonts/Lato/Lato-Semibold.ttf);
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Lato;
+  src: url(/fonts/Lato/Lato-Medium.ttf);
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Lato;
+  src: url(/fonts/Lato/Lato-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Lato;
+  src: url(/fonts/Lato/Lato-Light.ttf);
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Other styles */
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
