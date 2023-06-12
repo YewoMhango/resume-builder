@@ -114,6 +114,8 @@ div.smooth-dnd-container {
 
 @page {
   margin: 1in;
+  width: 6.27in;
+  height: 9.69in;
 }
 
 @media screen and (max-width: 500px) {

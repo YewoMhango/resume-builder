@@ -28,7 +28,7 @@ export default function TopToolbar({
 
   const printDocument = () => {
     setCurrentTab(CurrentTab.Preview);
-    setTimeout(print, 1000);
+    setTimeout(print, 500);
   };
 
   return (
