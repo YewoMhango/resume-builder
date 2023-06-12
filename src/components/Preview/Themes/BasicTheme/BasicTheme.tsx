@@ -11,6 +11,7 @@ import {
   OtherExperienceItem,
 } from "../../../../App";
 import styles from "./BasicTheme.module.scss";
+import DateRangeDisplay from "../DateRangeDisplay";
 
 nationalities.registerLocale(EnLocale);
 
@@ -294,51 +295,3 @@ function RefereesSection({ referees }: { referees: Referee[] }) {
     </>
   );
 }
-
-export function DateRangeDisplay({
-  endDate,
-  startDate,
-}: {
-  startDate: DateTime | null;
-  endDate: DateTime | null;
-}) {
-  if (endDate === null && startDate === null) {
-    return null;
-  }
-
-  if (endDate === null) {
-    return <>{startDate?.year} – Present</>;
-  }
-
-  if (startDate === null) {
-    return <>{endDate.year}</>;
-  }
-
-  if (startDate.month === endDate.month && startDate.year === endDate.year) {
-    return <>{startDate.toLocaleString({ month: "long", year: "numeric" })}</>;
-  }
-
-  if (startDate.year === endDate.year) {
-    return (
-      <>
-        {startDate.toLocaleString({ month: "long" })} –{" "}
-        {endDate.toLocaleString({ month: "long", year: "numeric" })}
-      </>
-    );
-  }
-
-  return (
-    <>
-      {startDate.year} - {endDate.year}
-    </>
-  );
-}
-
-// function allFieldsAreEmpty(obj: { [key: string]: any }) {
-//   for (let key of Object.keys(obj)) {
-//     if (obj[key]) {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
