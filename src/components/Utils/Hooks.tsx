@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 export function useDebouncedAction() {
   let [lastAction, setLastAction] = useState<{
@@ -21,4 +21,17 @@ export function useDebouncedAction() {
   );
 
   return delayAction;
+}
+
+/**
+ * Uses `title` as the new document title
+ *
+ * ---
+ * @param title New page title
+ * @param dependencies If present, effect will only activate if the values in the list change
+ */
+export function useDocumentTitle(title: string, dependencies: Array<any> = []) {
+  useEffect(() => {
+    document.title = title;
+  }, [title, ...dependencies]);
 }

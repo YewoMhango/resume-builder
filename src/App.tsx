@@ -15,7 +15,7 @@ import EditDetails from "./components/EditDetails/EditDetails";
 import Preview from "./components/Preview/Preview";
 import TopToolbar from "./components/TopToolbar";
 import Footer from "./components/Footer";
-import { useDebouncedAction } from "./components/Utils/Hooks";
+import { useDebouncedAction, useDocumentTitle } from "./components/Utils/Hooks";
 
 export enum CurrentTab {
   Edit = "Edit",
@@ -116,6 +116,14 @@ const theme = createTheme({
 export default function App() {
   let [currentTab, setCurrentTab] = useState(CurrentTab.Edit);
   let [resumeData, setResumeData] = useState<ResumeData | null>(null);
+
+  useDocumentTitle(
+    resumeData &&
+      (resumeData.personalDetails.firstName ||
+        resumeData.personalDetails.lastName)
+      ? `${resumeData.personalDetails.firstName} ${resumeData.personalDetails.lastName} – CV`.trim()
+      : "Online CV/Resume Builder"
+  );
 
   useEffect(() => {
     const localData = JSON.parse(localStorage.getItem("resumeData") || "null");
