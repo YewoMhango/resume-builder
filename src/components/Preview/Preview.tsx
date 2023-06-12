@@ -7,18 +7,41 @@ import {
   Select,
 } from "@mui/material";
 
+import { useState } from "react";
+
 import styles from "./Preview.module.scss";
 import { ResumeData } from "../../App";
 import BasicTheme from "./Themes/BasicTheme/BasicTheme";
+import ContrastTheme from "./Themes/ContrastTheme/ContrastTheme";
+
+enum Theme {
+  Basic = "Basic",
+  Contrast = "Contrast",
+}
 
 export default function Preview({ resumeData }: { resumeData: ResumeData }) {
+  let [resumeTheme, setResumeTheme] = useState<Theme>(
+    (localStorage.getItem("theme") as Theme | null) || Theme.Basic
+  );
+
+  let updateTheme = (themeName: Theme) => {
+    setResumeTheme(themeName);
+    localStorage.setItem("theme", themeName);
+  };
+
   return (
     <Container maxWidth="md" className={styles.previewContainer}>
       <Box className="hide-when-printing">
         <FormControl sx={{ width: "fit-content" }} size="small">
           <InputLabel id="theme-label">Theme</InputLabel>
-          <Select labelId="theme-label" label="Theme" defaultValue="Basic">
-            <MenuItem value="Basic">Basic</MenuItem>
+          <Select
+            labelId="theme-label"
+            label="Theme"
+            value={resumeTheme}
+            onChange={(e) => updateTheme(e.target.value as Theme)}
+          >
+            <MenuItem value={Theme.Basic}>Basic</MenuItem>
+            <MenuItem value={Theme.Contrast}>Contrast</MenuItem>
           </Select>
         </FormControl>
       </Box>
@@ -32,7 +55,11 @@ export default function Preview({ resumeData }: { resumeData: ResumeData }) {
           backgroundColor: "white",
         }}
       >
-        <BasicTheme resumeData={resumeData} />
+        {resumeTheme === Theme.Contrast ? (
+          <ContrastTheme resumeData={resumeData} />
+        ) : (
+          <BasicTheme resumeData={resumeData} />
+        )}
       </Box>
     </Container>
   );

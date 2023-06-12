@@ -1,0 +1,147 @@
+.contrast-theme-container {
+  height: 11.69in;
+  width: 8.27in;
+  position: relative;
+  color: #323b4c;
+  font-size: 10pt;
+  font-family: Lato;
+
+  h3,
+  h4 {
+    font-family: "Bert Sans";
+  }
+
+  h3 {
+    font-size: 1.6em;
+    font-weight: 900;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+
+  hr {
+    border-style: solid;
+  }
+
+  .background-svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: currentColor;
+  }
+
+  .left-section {
+    background-color: transparent;
+    position: absolute;
+    left: 0.5in;
+    top: 0.5in;
+    width: 2.5in;
+    height: 10.7in;
+    color: white;
+    print-color-adjust: exact;
+
+    .skills-list {
+      padding-left: 1em;
+
+      li {
+        margin-bottom: 0.8em;
+      }
+    }
+  }
+
+  .right-section {
+    background-color: transparent;
+    position: absolute;
+    left: 3.3in;
+    top: 0.5in;
+    width: 4.7in;
+    height: 10.7in;
+
+    .name {
+      font-size: 3.2em;
+      font-weight: 500;
+    }
+    .occupation {
+      font-weight: 500;
+    }
+
+    ul {
+      position: relative;
+      padding-left: 10px;
+
+      .left-line {
+        position: absolute;
+        top: 10px;
+        left: 17px;
+        height: 100%;
+        width: 2px;
+        opacity: 0.7;
+      }
+
+      li {
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        margin-bottom: 30px;
+
+        .list-circle {
+          flex-shrink: 0;
+          margin-right: 20px;
+          position: relative;
+          width: 16px;
+
+          svg {
+            position: absolute;
+          }
+        }
+
+        .date-range,
+        .place,
+        .work {
+          font-size: 1.1em;
+        }
+
+        .date-range {
+          font-weight: 600;
+          opacity: 0.9;
+        }
+
+        .place {
+          font-weight: 300;
+        }
+
+        .work {
+          font-weight: 700;
+        }
+      }
+    }
+
+    .refereesList {
+      display: grid;
+      grid-template-columns: auto auto;
+
+      .referee {
+        font-size: 0.8em;
+        margin-right: 10px;
+        margin-bottom: 10px;
+
+        h4 {
+          font-family: inherit;
+          font-weight: 700;
+          font-size: 1.4em;
+        }
+      }
+    }
+  }
+}
