@@ -9,14 +9,20 @@ import {
 } from "../../../../App";
 import DateRangeDisplay from "../DateRangeDisplay";
 import React from "react";
+import { ThemeConfig } from "../../Preview";
 
 export default function ContrastTheme({
   resumeData,
+  themeConfig,
 }: {
   resumeData: ResumeData;
+  themeConfig: ThemeConfig;
 }) {
   return (
-    <div className={styles.contrastThemeContainer}>
+    <div
+      className={styles.contrastThemeContainer}
+      style={{ fontSize: `${themeConfig.fontSize}pt` }}
+    >
       <style>
         {`
           @page {

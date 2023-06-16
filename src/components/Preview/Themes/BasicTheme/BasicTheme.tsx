@@ -12,14 +12,24 @@ import {
 } from "../../../../App";
 import styles from "./BasicTheme.module.scss";
 import DateRangeDisplay from "../DateRangeDisplay";
+import { ThemeConfig } from "../../Preview";
 
 nationalities.registerLocale(EnLocale);
 
-export default function BasicTheme({ resumeData }: { resumeData: ResumeData }) {
+export default function BasicTheme({
+  resumeData,
+  themeConfig,
+}: {
+  resumeData: ResumeData;
+  themeConfig: ThemeConfig;
+}) {
   const { personalDetails } = resumeData;
 
   return (
-    <div className={styles.basicThemeContainer}>
+    <div
+      className={styles.basicThemeContainer}
+      style={{ fontSize: `${themeConfig.fontSize}pt` }}
+    >
       <h1>
         {personalDetails.firstName} {personalDetails.lastName}{" "}
         {(personalDetails.lastName || personalDetails.firstName) &&

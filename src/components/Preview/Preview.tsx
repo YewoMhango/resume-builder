@@ -19,14 +19,22 @@ enum Theme {
   Contrast = "Contrast",
 }
 
+export type ThemeConfig = {
+  fontSize: number;
+};
+
 export default function Preview({ resumeData }: { resumeData: ResumeData }) {
   let [resumeTheme, setResumeTheme] = useState<Theme>(
     (localStorage.getItem("theme") as Theme | null) || Theme.Basic
   );
+  let [themeConfig, setThemeConfig] = useState<ThemeConfig>({
+    fontSize: fontSizeForTheme(resumeTheme),
+  });
 
   let updateTheme = (themeName: Theme) => {
     setResumeTheme(themeName);
     localStorage.setItem("theme", themeName);
+    setThemeConfig({ ...themeConfig, fontSize: fontSizeForTheme(themeName) });
   };
 
   return (
@@ -44,6 +52,31 @@ export default function Preview({ resumeData }: { resumeData: ResumeData }) {
             <MenuItem value={Theme.Contrast}>Contrast</MenuItem>
           </Select>
         </FormControl>
+        &nbsp;
+        <FormControl sx={{ width: "100px" }} size="small">
+          <InputLabel id="font-size-label">Font size</InputLabel>
+          <Select
+            labelId="font-size-label"
+            label="Font size"
+            value={themeConfig.fontSize}
+            onChange={(e) =>
+              setThemeConfig({
+                ...themeConfig,
+                fontSize: Number(e.target.value),
+              })
+            }
+          >
+            <MenuItem value={8}>8</MenuItem>
+            <MenuItem value={9}>9</MenuItem>
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={11}>11</MenuItem>
+            <MenuItem value={12}>12</MenuItem>
+            <MenuItem value={13}>13</MenuItem>
+            <MenuItem value={14}>14</MenuItem>
+            <MenuItem value={15}>15</MenuItem>
+            <MenuItem value={16}>16</MenuItem>
+          </Select>
+        </FormControl>
       </Box>
       <br className="hide-when-printing" />
       <Box
@@ -56,11 +89,15 @@ export default function Preview({ resumeData }: { resumeData: ResumeData }) {
         }}
       >
         {resumeTheme === Theme.Contrast ? (
-          <ContrastTheme resumeData={resumeData} />
+          <ContrastTheme resumeData={resumeData} themeConfig={themeConfig} />
         ) : (
-          <BasicTheme resumeData={resumeData} />
+          <BasicTheme resumeData={resumeData} themeConfig={themeConfig} />
         )}
       </Box>
     </Container>
   );
+}
+
+function fontSizeForTheme(resumeTheme: Theme): number {
+  return resumeTheme === Theme.Basic ? 12 : 10;
 }
