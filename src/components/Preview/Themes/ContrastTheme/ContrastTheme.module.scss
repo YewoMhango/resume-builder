@@ -5,6 +5,7 @@
   color: #323b4c;
   font-size: 10pt;
   font-family: Lato;
+  overflow-y: hidden;
 
   h3,
   h4 {
@@ -29,15 +30,10 @@
     margin: 0;
   }
 
-  hr {
-    border-style: solid;
-  }
-
   .background-svg {
     position: absolute;
     left: 0;
     top: 0;
-    fill: currentColor;
   }
 
   .left-section {
@@ -46,15 +42,17 @@
     left: 0.5in;
     top: 0.5in;
     width: 2.5in;
-    height: 10.7in;
-    color: white;
-    print-color-adjust: exact;
 
-    .skills-list {
+    * {
+      color: inherit;
+    }
+
+    .skills-list,
+    .languages-list {
       padding-left: 1em;
 
       li {
-        margin-bottom: 0.8em;
+        margin-bottom: 0.5em;
       }
     }
   }
@@ -65,14 +63,15 @@
     left: 3.3in;
     top: 0.5in;
     width: 4.7in;
-    height: 10.7in;
 
     .name {
       font-size: 3.2em;
       font-weight: 500;
     }
     .occupation {
-      font-weight: 500;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      font-size: 1.7em;
     }
 
     ul {
@@ -83,7 +82,7 @@
         position: absolute;
         top: 10px;
         left: 17px;
-        height: 100%;
+        height: calc(100% - 10px);
         width: 2px;
         opacity: 0.7;
       }
@@ -93,7 +92,7 @@
         display: flex;
         flex-direction: row;
         align-items: flex-start;
-        margin-bottom: 30px;
+        margin-bottom: 1.5em;
 
         .list-circle {
           flex-shrink: 0;
@@ -133,8 +132,8 @@
 
       .referee {
         font-size: 0.8em;
-        margin-right: 10px;
-        margin-bottom: 10px;
+        margin-right: 1em;
+        margin-bottom: 1em;
 
         h4 {
           font-family: inherit;

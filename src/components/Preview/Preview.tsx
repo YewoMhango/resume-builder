@@ -33,10 +33,10 @@ export default function Preview({ resumeData }: { resumeData: ResumeData }) {
     <Container maxWidth="md" className={styles.previewContainer}>
       <Box className="hide-when-printing">
         <FormControl sx={{ width: "fit-content" }} size="small">
-          <InputLabel id="theme-label">Theme</InputLabel>
+          <InputLabel id="theme-label">Template</InputLabel>
           <Select
             labelId="theme-label"
-            label="Theme"
+            label="Template"
             value={resumeTheme}
             onChange={(e) => updateTheme(e.target.value as Theme)}
           >

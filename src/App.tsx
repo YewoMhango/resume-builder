@@ -41,7 +41,6 @@ export type PersonalDetails = {
   occupation: string;
   gender: Gender;
   birthDate: DateTime | null;
-  languages: string[];
   maritalStatus: MaritalStatus;
   nationality: string;
   cellPhone: string;
@@ -84,6 +83,7 @@ export type ResumeData = {
   workExperience: WorkExperienceItem[];
   otherExperiences: OtherExperienceItem[];
   skills: string[];
+  languages: string[];
   referees: Referee[];
 };
 
@@ -158,6 +158,7 @@ export default function App() {
             endDate: value.endDate && DateTime.fromISO(value.endDate),
           })
         ),
+        languages: localData.languages ? localData.languages : [],
       });
     } else {
       setResumeData({
@@ -167,7 +168,6 @@ export default function App() {
           occupation: "",
           gender: Gender.Male,
           birthDate: null,
-          languages: [],
           maritalStatus: MaritalStatus.Single,
           nationality: "",
           cellPhone: "",
@@ -178,6 +178,7 @@ export default function App() {
         workExperience: [],
         otherExperiences: [],
         skills: [],
+        languages: [],
         referees: [],
       });
     }

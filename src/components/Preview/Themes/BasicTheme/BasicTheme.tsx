@@ -28,7 +28,10 @@ export default function BasicTheme({ resumeData }: { resumeData: ResumeData }) {
           : null}{" "}
         {personalDetails.occupation}
       </h1>
-      <PersonalDetailsSection personalDetails={personalDetails} />
+      <PersonalDetailsSection
+        personalDetails={personalDetails}
+        languages={resumeData.languages}
+      />
       {resumeData.about ? <AboutSection about={resumeData.about} /> : null}
       {resumeData.educationalBackground.length > 0 ? (
         <EducationalBackgroundSection
@@ -53,8 +56,10 @@ export default function BasicTheme({ resumeData }: { resumeData: ResumeData }) {
 
 function PersonalDetailsSection({
   personalDetails,
+  languages,
 }: {
   personalDetails: PersonalDetails;
+  languages: string[];
 }) {
   return (
     <>
@@ -79,6 +84,11 @@ function PersonalDetailsSection({
           <div>
             <strong>Birth date:</strong>{" "}
             {personalDetails.birthDate.toLocaleString(DateTime.DATE_FULL)}
+          </div>
+        ) : null}
+        {languages.length > 0 ? (
+          <div>
+            <strong>Languages:</strong> {listOfItemsToEnglish(languages)}
           </div>
         ) : null}
         {personalDetails.maritalStatus ? (
@@ -293,5 +303,20 @@ function RefereesSection({ referees }: { referees: Referee[] }) {
         </ol>
       </section>
     </>
+  );
+}
+
+function listOfItemsToEnglish(list: string[]) {
+  if (list.length === 0) {
+    return "";
+  }
+
+  if (list.length === 1) {
+    list[0];
+  }
+
+  return list.reduce(
+    (prev, curr, index) =>
+      `${prev}${index === list.length - 1 ? " and" : ","} ${curr}`
   );
 }

@@ -27,7 +27,7 @@ export default function ContrastTheme({
         `}
       </style>
       <svg width="100%" height="100%" className={styles.backgroundSvg}>
-        <rect x="0" y="0" width="3in" height="100%" />
+        <rect x="0" y="0" width="3in" height="100%" fill="hsl(219, 21%, 90%)" />
       </svg>
       <LeftSection resumeData={resumeData} />
       <RightSection resumeData={resumeData} />
@@ -43,6 +43,8 @@ function LeftSection({ resumeData }: { resumeData: ResumeData }) {
       <Education educationalBackground={resumeData.educationalBackground} />
       <br />
       <Skills skills={resumeData.skills} />
+      <br />
+      <Languages languages={resumeData.languages} />
     </div>
   );
 }
@@ -120,6 +122,22 @@ function ContactDetails({
   );
 }
 
+function Languages({ languages }: { languages: string[] }) {
+  return languages.length > 0 ? (
+    <>
+      <h3>Languages</h3>
+      <hr />
+      <ul className={styles.languagesList}>
+        {languages.map((language) => (
+          <li>{language}</li>
+        ))}
+      </ul>
+    </>
+  ) : (
+    <></>
+  );
+}
+
 function RightSection({ resumeData }: { resumeData: ResumeData }) {
   return (
     <div className={styles.rightSection}>
@@ -130,7 +148,6 @@ function RightSection({ resumeData }: { resumeData: ResumeData }) {
       <br />
       <Experience workExperience={resumeData.workExperience} />
       <OtherExperiences otherExperiences={resumeData.otherExperiences} />
-
       <Referees referees={resumeData.referees} />
     </div>
   );
@@ -241,15 +258,21 @@ function Referees({ referees }: { referees: Referee[] }) {
           <div className={styles.referee} key={JSON.stringify(referee)}>
             <h4>{referee.name}</h4>
             <div>{referee.institution}</div>
-            <div>
-              <strong>Address:</strong> {referee.address}
-            </div>
-            <div>
-              <strong>Phone:</strong> {referee.phone}
-            </div>
-            <div>
-              <strong>Email:</strong> {referee.email}
-            </div>
+            {referee.address ? (
+              <div>
+                <strong>Address:</strong> {referee.address}
+              </div>
+            ) : null}
+            {referee.phone ? (
+              <div>
+                <strong>Phone:</strong> {referee.phone}
+              </div>
+            ) : null}
+            {referee.email ? (
+              <div>
+                <strong>Email:</strong> {referee.email}
+              </div>
+            ) : null}
           </div>
         ))}
       </div>

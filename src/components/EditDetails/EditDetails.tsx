@@ -8,6 +8,7 @@ import Skills from "./Skills";
 import Referees from "./Referees";
 import AboutYou from "./AboutYou";
 import OtherExperience from "./OtherExperiences";
+import Languages from "./Languages";
 
 export default function EditDetails({
   resumeData,
@@ -51,6 +52,12 @@ export default function EditDetails({
       <Skills
         skills={resumeData.skills}
         setSkills={(skills) => setResumeData({ ...resumeData, skills })}
+      />
+      <Languages
+        languages={resumeData.languages}
+        setLanguages={(languages) =>
+          setResumeData({ ...resumeData, languages })
+        }
       />
       <Referees
         referees={resumeData.referees}

@@ -78,6 +78,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  print-color-adjust: exact;
 }
 body {
   margin: 0;
@@ -96,6 +97,11 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+hr {
+  border-style: solid;
+  border-color: currentColor;
 }
 
 div.smooth-dnd-container {
