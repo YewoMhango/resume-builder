@@ -10,32 +10,33 @@ import {
   WorkExperienceItem,
   OtherExperienceItem,
 } from "../../../../App";
-import styles from "./BasicTheme.module.scss";
+import styles from "./BasicTemplate.module.scss";
 import DateRangeDisplay from "../DateRangeDisplay";
-import { ThemeConfig } from "../../Preview";
+import { TemplateConfig } from "../../Preview";
 
 nationalities.registerLocale(EnLocale);
 
-export default function BasicTheme({
+export default function BasicTemplate({
   resumeData,
-  themeConfig,
+  templateConfig,
 }: {
   resumeData: ResumeData;
-  themeConfig: ThemeConfig;
+  templateConfig: TemplateConfig;
 }) {
   const { personalDetails } = resumeData;
 
   return (
     <div
-      className={styles.basicThemeContainer}
-      style={{ fontSize: `${themeConfig.fontSize}pt` }}
+      className={styles.basicTemplateContainer}
+      style={{ fontSize: `${templateConfig.fontSize}pt` }}
     >
       <h1>
-        {personalDetails.firstName} {personalDetails.lastName}{" "}
+        {personalDetails.firstName} {personalDetails.lastName}&nbsp;
         {(personalDetails.lastName || personalDetails.firstName) &&
         personalDetails.occupation
           ? "–"
-          : null}{" "}
+          : null}
+        &nbsp;
         {personalDetails.occupation}
       </h1>
       <PersonalDetailsSection
@@ -50,10 +51,12 @@ export default function BasicTheme({
       ) : null}
       {resumeData.workExperience.length > 0 ? (
         <WorkExperienceSection workExperience={resumeData.workExperience} />
-      ) : null}{" "}
+      ) : null}
+      &nbsp;
       {resumeData.otherExperiences.length > 0 ? (
         <OtherExperienceSection otherExperience={resumeData.otherExperiences} />
-      ) : null}{" "}
+      ) : null}
+      &nbsp;
       {resumeData.skills.length > 0 ? (
         <SkillsSection skills={resumeData.skills} />
       ) : null}
@@ -92,7 +95,8 @@ function PersonalDetailsSection({
         ) : null}
         {personalDetails.birthDate ? (
           <div>
-            <strong>Birth date:</strong>{" "}
+            <strong>Birth date:</strong>
+            &nbsp;
             {personalDetails.birthDate.toLocaleString(DateTime.DATE_FULL)}
           </div>
         ) : null}
@@ -108,7 +112,8 @@ function PersonalDetailsSection({
         ) : null}
         {personalDetails.nationality ? (
           <div>
-            <strong>Nationality:</strong>{" "}
+            <strong>Nationality:</strong>
+            &nbsp;
             {nationalities.getName(personalDetails.nationality, "en")}
           </div>
         ) : null}
@@ -119,7 +124,8 @@ function PersonalDetailsSection({
         ) : null}
         {personalDetails.email ? (
           <div>
-            <strong>Email:</strong>{" "}
+            <strong>Email:</strong>
+            &nbsp;
             <a href={`mailto:${personalDetails.email}`}>
               {personalDetails.email}
             </a>
@@ -302,7 +308,7 @@ function RefereesSection({ referees }: { referees: Referee[] }) {
                 {element.email ? (
                   <tr>
                     <td>
-                      Email:{" "}
+                      Email: &nbsp;
                       <a href={`mailto:${element.email}`}>{element.email}</a>
                     </td>
                   </tr>

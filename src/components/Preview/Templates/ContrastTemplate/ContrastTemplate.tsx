@@ -1,4 +1,4 @@
-import styles from "./ContrastTheme.module.scss";
+import styles from "./ContrastTemplate.module.scss";
 import {
   EducationalBackgroundItem,
   OtherExperienceItem,
@@ -9,19 +9,19 @@ import {
 } from "../../../../App";
 import DateRangeDisplay from "../DateRangeDisplay";
 import React from "react";
-import { ThemeConfig } from "../../Preview";
+import { TemplateConfig } from "../../Preview";
 
-export default function ContrastTheme({
+export default function ContrastTemplate({
   resumeData,
-  themeConfig,
+  templateConfig,
 }: {
   resumeData: ResumeData;
-  themeConfig: ThemeConfig;
+  templateConfig: TemplateConfig;
 }) {
   return (
     <div
-      className={styles.contrastThemeContainer}
-      style={{ fontSize: `${themeConfig.fontSize}pt` }}
+      className={styles.contrastTemplateContainer}
+      style={{ fontSize: `${templateConfig.fontSize}pt` }}
     >
       <style>
         {`
@@ -166,18 +166,21 @@ function Header({
   personalDetails: PersonalDetails;
   about: string;
 }) {
+  let { firstName, lastName, occupation } = personalDetails;
+
   return (
     <>
       <h1 className={styles.name}>
-        <strong>{personalDetails.firstName}</strong> {personalDetails.lastName}
-        {!personalDetails.firstName && !personalDetails.lastName ? (
-          <strong>[ Your Name ]</strong>
-        ) : null}
+        {!firstName && !lastName ? (
+          "[ Your Name ]"
+        ) : (
+          <>
+            {firstName} {lastName}
+          </>
+        )}
       </h1>
       <h2 className={styles.occupation}>
-        {personalDetails.occupation.trim()
-          ? personalDetails.occupation
-          : "[ your occupation ]"}
+        {occupation.trim() ? occupation : "[ your occupation ]"}
       </h2>
       <p>{about}</p>
     </>

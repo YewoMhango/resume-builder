@@ -29,8 +29,8 @@ export default function Footer() {
                 target="_blank"
               >
                 Yewo Mhango
-              </Link>{" "}
-              |{" "}
+              </Link>
+              &nbsp; | &nbsp;
               <Link
                 sx={{ color: "inherit", textDecorationColor: "currentcolor" }}
                 underline="always"
@@ -38,8 +38,8 @@ export default function Footer() {
                 target="_blank"
               >
                 GitHub Repository
-              </Link>{" "}
-              |{" "}
+              </Link>
+              &nbsp; | &nbsp;
               <Link
                 sx={{ color: "inherit", textDecorationColor: "currentcolor" }}
                 underline="always"

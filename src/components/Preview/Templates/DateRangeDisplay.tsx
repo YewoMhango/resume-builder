@@ -31,7 +31,8 @@ export default function DateRangeDisplay({
   if (startDate.year === endDate.year) {
     return (
       <>
-        {startDate.toLocaleString({ month: "long" })} –{" "}
+        {startDate.toLocaleString({ month: "long" })}
+        &nbsp;–&nbsp;
         {endDate.toLocaleString({ month: "long", year: "numeric" })}
       </>
     );
