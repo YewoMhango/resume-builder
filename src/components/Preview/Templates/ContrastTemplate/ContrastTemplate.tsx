@@ -28,7 +28,7 @@ export default function ContrastTemplate({
           @page {
             margin: 0;
             height: 11.69in;
-            width: 8.27in;
+            width: 8.28in;
           }
         `}
       </style>
