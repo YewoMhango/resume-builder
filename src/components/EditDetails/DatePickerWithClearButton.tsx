@@ -1,3 +1,4 @@
+import { Close, Delete, DeleteForever } from "@mui/icons-material";
 import { Box, Button, TextFieldVariants } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { DateTime } from "luxon";
@@ -36,8 +37,9 @@ export default function DatePickerWithClearButton({
       {value ? (
         <Button
           variant={buttonVariant || "text"}
-          sx={{ ml: 2 }}
+          sx={{ ml: 1, minWidth: 40 }}
           onClick={() => onChange(null)}
+          size="small"
         >
           Clear
         </Button>
