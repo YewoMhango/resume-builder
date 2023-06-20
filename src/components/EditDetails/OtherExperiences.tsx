@@ -16,6 +16,7 @@ import { arrayMoveImmutable } from "array-move";
 import { Container, Draggable } from "@smooth-dnd/react";
 
 import { OtherExperienceItem } from "../../App";
+import DatePickerWithClearButton from "./DatePickerWithClearButton";
 
 export default function OtherExperience({
   otherExperience,
@@ -144,7 +145,6 @@ function OtherExperienceElement({
             label="Start date"
             value={otherExperienceItem.startDate}
             onChange={(value) =>
-              value &&
               updateOtherExperienceItem({
                 ...otherExperienceItem,
                 startDate: value,
@@ -154,17 +154,16 @@ function OtherExperienceElement({
           />
         </ListItem>
         <ListItem>
-          <DatePicker
+          <DatePickerWithClearButton
             label="End date"
             value={otherExperienceItem.endDate}
             onChange={(value) =>
-              value &&
               updateOtherExperienceItem({
                 ...otherExperienceItem,
                 endDate: value,
               })
             }
-            slotProps={{ textField: { variant: "standard" } }}
+            variant="standard"
           />
         </ListItem>
       </List>

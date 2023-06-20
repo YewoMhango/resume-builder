@@ -2,6 +2,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Box,
   Button,
   IconButton,
   List,
@@ -16,6 +17,7 @@ import { arrayMoveImmutable } from "array-move";
 import { Container, Draggable } from "@smooth-dnd/react";
 
 import { WorkExperienceItem } from "../../App";
+import DatePickerWithClearButton from "./DatePickerWithClearButton";
 
 export default function WorkExperience({
   workExperience,
@@ -144,7 +146,6 @@ function WorkExperienceElement({
             label="Start date"
             value={workExperienceItem.startDate}
             onChange={(value) =>
-              value &&
               updateWorkExperienceItem({
                 ...workExperienceItem,
                 startDate: value,
@@ -154,17 +155,16 @@ function WorkExperienceElement({
           />
         </ListItem>
         <ListItem>
-          <DatePicker
+          <DatePickerWithClearButton
             label="End date"
             value={workExperienceItem.endDate}
             onChange={(value) =>
-              value &&
               updateWorkExperienceItem({
                 ...workExperienceItem,
                 endDate: value,
               })
             }
-            slotProps={{ textField: { variant: "standard" } }}
+            variant="standard"
           />
         </ListItem>
       </List>

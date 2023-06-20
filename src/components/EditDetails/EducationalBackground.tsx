@@ -13,9 +13,10 @@ import {
 import { ExpandMore, Add, Delete, DragHandle } from "@mui/icons-material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { arrayMoveImmutable } from "array-move";
+import { Container, Draggable } from "@smooth-dnd/react";
 
 import { EducationalBackgroundItem } from "../../App";
-import { Container, Draggable } from "@smooth-dnd/react";
+import DatePickerWithClearButton from "./DatePickerWithClearButton";
 
 export default function EducationalBackground({
   educationalBackground,
@@ -155,7 +156,6 @@ function EducationalBackgroundElement({
             label="Start date"
             value={educationalBackgroundItem.startDate}
             onChange={(value) =>
-              value &&
               updateEducationalBackgroundItem({
                 ...educationalBackgroundItem,
                 startDate: value,
@@ -165,17 +165,16 @@ function EducationalBackgroundElement({
           />
         </ListItem>
         <ListItem>
-          <DatePicker
+          <DatePickerWithClearButton
             label="End date"
             value={educationalBackgroundItem.endDate}
             onChange={(value) =>
-              value &&
               updateEducationalBackgroundItem({
                 ...educationalBackgroundItem,
                 endDate: value,
               })
             }
-            slotProps={{ textField: { variant: "standard" } }}
+            variant="standard"
           />
         </ListItem>
       </List>

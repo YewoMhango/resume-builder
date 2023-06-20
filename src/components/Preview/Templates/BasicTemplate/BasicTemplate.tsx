@@ -52,11 +52,9 @@ export default function BasicTemplate({
       {resumeData.workExperience.length > 0 ? (
         <WorkExperienceSection workExperience={resumeData.workExperience} />
       ) : null}
-      &nbsp;
       {resumeData.otherExperiences.length > 0 ? (
         <OtherExperienceSection otherExperience={resumeData.otherExperiences} />
       ) : null}
-      &nbsp;
       {resumeData.skills.length > 0 ? (
         <SkillsSection skills={resumeData.skills} />
       ) : null}

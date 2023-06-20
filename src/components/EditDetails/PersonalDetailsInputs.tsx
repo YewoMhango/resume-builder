@@ -39,12 +39,10 @@ export default function PersonalDetailsInputs({
   // Returns an object not a list
   const countryObj = countries.getNames("en", { select: "official" });
 
-  const countryArr = Object.entries(countryObj).map(([key, value]) => {
-    return {
-      label: value,
-      value: key,
-    };
-  });
+  const countryArr = Object.entries(countryObj).map(([key, value]) => ({
+    label: value,
+    value: key,
+  }));
 
   return (
     <Accordion defaultExpanded>
@@ -122,9 +120,7 @@ export default function PersonalDetailsInputs({
                   <DatePicker
                     label="Birth date"
                     value={personalDetails.birthDate}
-                    onChange={(value) =>
-                      value && updateField("birthDate", value)
-                    }
+                    onChange={(value) => updateField("birthDate", value)}
                     maxDate={DateTime.now()}
                   />
                 </TableCell>
