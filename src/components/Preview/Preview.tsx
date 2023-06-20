@@ -11,45 +11,54 @@ import { useState } from "react";
 
 import styles from "./Preview.module.scss";
 import { ResumeData } from "../../App";
-import BasicTheme from "./Themes/BasicTheme/BasicTheme";
-import ContrastTheme from "./Themes/ContrastTheme/ContrastTheme";
+import BasicTemplate from "./Templates/BasicTemplate/BasicTemplate";
+import ContrastTemplate from "./Templates/ContrastTemplate/ContrastTemplate";
+import PerthTemplate from "./Templates/PerthTemplate/PerthTemplate";
 
-enum Theme {
+enum Template {
   Basic = "Basic",
   Contrast = "Contrast",
+  Perth = "Perth",
 }
 
-export type ThemeConfig = {
+export type TemplateConfig = {
   fontSize: number;
 };
 
 export default function Preview({ resumeData }: { resumeData: ResumeData }) {
-  let [resumeTheme, setResumeTheme] = useState<Theme>(
-    (localStorage.getItem("theme") as Theme | null) || Theme.Basic
+  let [resumeTemplate, setResumeTemplate] = useState<Template>(
+    (localStorage.getItem("template") as Template | null) || Template.Basic
   );
-  let [themeConfig, setThemeConfig] = useState<ThemeConfig>({
-    fontSize: fontSizeForTheme(resumeTheme),
-  });
+  let [templateConfig, setTemplateConfig] = useState<TemplateConfig>(
+    JSON.parse(localStorage.getItem("templateConfig") || "null") ||
+      defaultTemplateConfiguration(resumeTemplate)
+  );
 
-  let updateTheme = (themeName: Theme) => {
-    setResumeTheme(themeName);
-    localStorage.setItem("theme", themeName);
-    setThemeConfig({ ...themeConfig, fontSize: fontSizeForTheme(themeName) });
+  let updateTemplateConfig = (config: TemplateConfig) => {
+    setTemplateConfig(config);
+    localStorage.setItem("templateConfig", JSON.stringify(config));
+  };
+
+  let updateTemplate = (templateName: Template) => {
+    setResumeTemplate(templateName);
+    localStorage.setItem("template", templateName);
+    updateTemplateConfig(defaultTemplateConfiguration(templateName));
   };
 
   return (
     <Container maxWidth="md" className={styles.previewContainer}>
       <Box className="hide-when-printing">
         <FormControl sx={{ width: "fit-content" }} size="small">
-          <InputLabel id="theme-label">Template</InputLabel>
+          <InputLabel id="template-label">Template</InputLabel>
           <Select
-            labelId="theme-label"
+            labelId="template-label"
             label="Template"
-            value={resumeTheme}
-            onChange={(e) => updateTheme(e.target.value as Theme)}
+            value={resumeTemplate}
+            onChange={(e) => updateTemplate(e.target.value as Template)}
           >
-            <MenuItem value={Theme.Basic}>Basic</MenuItem>
-            <MenuItem value={Theme.Contrast}>Contrast</MenuItem>
+            <MenuItem value={Template.Basic}>Basic</MenuItem>
+            <MenuItem value={Template.Contrast}>Contrast</MenuItem>
+            <MenuItem value={Template.Perth}>Perth</MenuItem>
           </Select>
         </FormControl>
         &nbsp;
@@ -58,10 +67,10 @@ export default function Preview({ resumeData }: { resumeData: ResumeData }) {
           <Select
             labelId="font-size-label"
             label="Font size"
-            value={themeConfig.fontSize}
+            value={templateConfig.fontSize}
             onChange={(e) =>
-              setThemeConfig({
-                ...themeConfig,
+              updateTemplateConfig({
+                ...templateConfig,
                 fontSize: Number(e.target.value),
               })
             }
@@ -88,16 +97,29 @@ export default function Preview({ resumeData }: { resumeData: ResumeData }) {
           backgroundColor: "white",
         }}
       >
-        {resumeTheme === Theme.Contrast ? (
-          <ContrastTheme resumeData={resumeData} themeConfig={themeConfig} />
+        {resumeTemplate === Template.Contrast ? (
+          <ContrastTemplate
+            resumeData={resumeData}
+            templateConfig={templateConfig}
+          />
+        ) : resumeTemplate === Template.Perth ? (
+          <PerthTemplate
+            resumeData={resumeData}
+            templateConfig={templateConfig}
+          />
         ) : (
-          <BasicTheme resumeData={resumeData} themeConfig={themeConfig} />
+          <BasicTemplate
+            resumeData={resumeData}
+            templateConfig={templateConfig}
+          />
         )}
       </Box>
     </Container>
   );
 }
 
-function fontSizeForTheme(resumeTheme: Theme): number {
-  return resumeTheme === Theme.Basic ? 12 : 10;
+function defaultTemplateConfiguration(
+  resumeTemplate: Template
+): TemplateConfig {
+  return { fontSize: resumeTemplate === Template.Basic ? 12 : 10 };
 }

@@ -1,0 +1,188 @@
+.perth-template-container {
+  width: 8.28in;
+  min-height: 11.69in;
+  padding: 0.5in;
+  position: relative;
+  color: #666666;
+  font-size: 10pt;
+  font-family: Lato;
+  --heading-color: #333333;
+
+  h3 {
+    font-size: 1.6em;
+    font-weight: 900;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .list-circle,
+  .left-line {
+    color: var(--heading-color);
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: 0.3em;
+  }
+
+  h4,
+  h5,
+  h6 {
+    letter-spacing: 0.15em;
+  }
+
+  .background-svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  ul.lined-list {
+    position: relative;
+    padding-left: 0;
+
+    .left-line {
+      position: absolute;
+      top: 10px;
+      left: 9px;
+      height: calc(100% - 0.5em);
+      width: 2px;
+      opacity: 0.7;
+    }
+
+    li {
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      margin-bottom: 1.5em;
+
+      .list-circle {
+        flex-shrink: 0;
+        margin-right: 20px;
+        position: relative;
+        width: 16px;
+
+        svg {
+          position: absolute;
+        }
+      }
+
+      .main-text {
+        font-size: 1.1em;
+        font-weight: 700;
+      }
+
+      .sub-text {
+        margin-top: 0.2em;
+      }
+    }
+  }
+
+  .top-section {
+    width: fit-content;
+    position: relative;
+    margin-bottom: 5em;
+
+    .first-name {
+      font-size: 2em;
+      font-weight: 500;
+    }
+
+    .last-name {
+      font-size: 3.2em;
+      font-weight: 700;
+      line-height: 1em;
+    }
+
+    .occupation {
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      font-size: 1.1em;
+      right: 0;
+      position: absolute;
+      margin-top: 0.4em;
+      color: inherit;
+    }
+
+    .bottom-line,
+    .top-line {
+      position: absolute;
+      opacity: 0.7;
+      left: 9px;
+    }
+
+    .top-line {
+      top: -0.5in;
+    }
+
+    .bottom-line {
+      bottom: -4.5em;
+    }
+  }
+
+  .bottom-halves {
+    display: flex;
+    flex-direction: row;
+
+    .left-section {
+      width: 2.5in;
+      padding-right: 2em;
+
+      .phone,
+      .email {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 1em;
+      }
+
+      .skills-list,
+      .languages-list {
+        padding-left: 0;
+
+        li {
+          margin-bottom: 0.5em;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          svg {
+            flex-shrink: 0;
+            margin-right: 1em;
+          }
+        }
+      }
+    }
+
+    .right-section {
+      width: 4.7in;
+
+      .refereesList {
+        display: grid;
+        grid-template-columns: auto;
+        gap: 1em;
+      }
+    }
+  }
+}
