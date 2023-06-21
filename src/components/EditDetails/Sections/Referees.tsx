@@ -14,7 +14,7 @@ import { ExpandMore, Add, Delete, DragHandle } from "@mui/icons-material";
 import { arrayMoveImmutable } from "array-move";
 import { Container, Draggable } from "@smooth-dnd/react";
 
-import { Referee } from "../../App";
+import { Referee } from "../../../App";
 
 export default function Referees({
   referees,

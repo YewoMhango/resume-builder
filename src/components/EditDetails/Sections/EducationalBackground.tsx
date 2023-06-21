@@ -15,28 +15,29 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { arrayMoveImmutable } from "array-move";
 import { Container, Draggable } from "@smooth-dnd/react";
 
-import { OtherExperienceItem } from "../../App";
-import DatePickerWithClearButton from "./DatePickerWithClearButton";
+import { EducationalBackgroundItem } from "../../../App";
+import DatePickerWithClearButton from "../DatePickerWithClearButton";
 
-export default function OtherExperience({
-  otherExperience,
-  setOtherExperience,
+export default function EducationalBackground({
+  educationalBackground,
+  setEducationalBackground,
 }: {
-  otherExperience: OtherExperienceItem[];
-  setOtherExperience: (newValue: OtherExperienceItem[]) => void;
+  educationalBackground: EducationalBackgroundItem[];
+  setEducationalBackground: (background: EducationalBackgroundItem[]) => void;
 }) {
-  const addNewOtherExperience = () => {
-    setOtherExperience([
-      ...otherExperience,
-      { place: "", work: "", endDate: null, startDate: null },
+  const addNewEducationalBackground = () => {
+    setEducationalBackground([
+      ...educationalBackground,
+      { school: "", program: "", endDate: null, startDate: null },
     ]);
   };
 
-  const updateOtherExperienceItem =
-    (index: number) => (otherExperienceItem: OtherExperienceItem) => {
-      let newOtherExperiences = [...otherExperience];
-      newOtherExperiences[index] = otherExperienceItem;
-      setOtherExperience(newOtherExperiences);
+  const updateEducationalBackgroundItem =
+    (index: number) =>
+    (educationalBackgroundItem: EducationalBackgroundItem) => {
+      let newEducationalBackgrounds = [...educationalBackground];
+      newEducationalBackgrounds[index] = educationalBackgroundItem;
+      setEducationalBackground(newEducationalBackgrounds);
     };
 
   const onDrop = ({
@@ -46,19 +47,23 @@ export default function OtherExperience({
     removedIndex: number | null;
     addedIndex: number | null;
   }) => {
-    setOtherExperience(
-      arrayMoveImmutable(otherExperience, removedIndex || 0, addedIndex || 0)
+    setEducationalBackground(
+      arrayMoveImmutable(
+        educationalBackground,
+        removedIndex || 0,
+        addedIndex || 0
+      )
     );
   };
 
   return (
     <Accordion defaultExpanded>
       <AccordionSummary
-        aria-controls="panel4a-content"
-        id="other-experiences-header"
+        aria-controls="panel3a-content"
+        id="educational-background-header"
         expandIcon={<ExpandMore />}
       >
-        <Typography variant="h6">Other Experiences</Typography>
+        <Typography variant="h6">Educational Background</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <List>
@@ -67,15 +72,19 @@ export default function OtherExperience({
             lockAxis="y"
             onDrop={onDrop}
           >
-            {otherExperience.map((otherExperienceItem, index) => (
-              <Draggable key={JSON.stringify(otherExperienceItem)}>
-                <OtherExperienceElement
+            {educationalBackground.map((educationalBackgroundItem, index) => (
+              <Draggable key={JSON.stringify(educationalBackgroundItem)}>
+                <EducationalBackgroundElement
                   index={index}
-                  otherExperienceItem={otherExperienceItem}
-                  updateOtherExperienceItem={updateOtherExperienceItem(index)}
+                  educationalBackgroundItem={educationalBackgroundItem}
+                  updateEducationalBackgroundItem={updateEducationalBackgroundItem(
+                    index
+                  )}
                   deleteItem={() =>
-                    setOtherExperience(
-                      otherExperience.filter((s) => s !== otherExperienceItem)
+                    setEducationalBackground(
+                      educationalBackground.filter(
+                        (s) => s !== educationalBackgroundItem
+                      )
                     )
                   }
                 />
@@ -86,9 +95,9 @@ export default function OtherExperience({
             <Button
               variant="outlined"
               startIcon={<Add />}
-              onClick={() => addNewOtherExperience()}
+              onClick={() => addNewEducationalBackground()}
             >
-              Add Other Experience
+              Add Education
             </Button>
           </ListItem>
         </List>
@@ -97,16 +106,18 @@ export default function OtherExperience({
   );
 }
 
-function OtherExperienceElement({
+function EducationalBackgroundElement({
   index,
   deleteItem,
-  updateOtherExperienceItem,
-  otherExperienceItem,
+  updateEducationalBackgroundItem,
+  educationalBackgroundItem,
 }: {
   index: number;
   deleteItem: () => void;
-  otherExperienceItem: OtherExperienceItem;
-  updateOtherExperienceItem: (otherExperienceItem: OtherExperienceItem) => void;
+  educationalBackgroundItem: EducationalBackgroundItem;
+  updateEducationalBackgroundItem: (
+    educationalBackgroundItem: EducationalBackgroundItem
+  ) => void;
 }) {
   return (
     <ListItem sx={{ alignItems: "flex-start" }}>
@@ -117,12 +128,12 @@ function OtherExperienceElement({
         <ListItem>
           <TextField
             variant="standard"
-            label="Place"
-            defaultValue={otherExperienceItem.place}
+            label="School"
+            defaultValue={educationalBackgroundItem.school}
             onBlur={(e) =>
-              updateOtherExperienceItem({
-                ...otherExperienceItem,
-                place: e.target.value,
+              updateEducationalBackgroundItem({
+                ...educationalBackgroundItem,
+                school: e.target.value,
               })
             }
           />
@@ -130,12 +141,12 @@ function OtherExperienceElement({
         <ListItem>
           <TextField
             variant="standard"
-            label="Work"
-            defaultValue={otherExperienceItem.work}
+            label="Program"
+            defaultValue={educationalBackgroundItem.program}
             onBlur={(e) =>
-              updateOtherExperienceItem({
-                ...otherExperienceItem,
-                work: e.target.value,
+              updateEducationalBackgroundItem({
+                ...educationalBackgroundItem,
+                program: e.target.value,
               })
             }
           />
@@ -143,10 +154,10 @@ function OtherExperienceElement({
         <ListItem>
           <DatePicker
             label="Start date"
-            value={otherExperienceItem.startDate}
+            value={educationalBackgroundItem.startDate}
             onChange={(value) =>
-              updateOtherExperienceItem({
-                ...otherExperienceItem,
+              updateEducationalBackgroundItem({
+                ...educationalBackgroundItem,
                 startDate: value,
               })
             }
@@ -156,10 +167,10 @@ function OtherExperienceElement({
         <ListItem>
           <DatePickerWithClearButton
             label="End date"
-            value={otherExperienceItem.endDate}
+            value={educationalBackgroundItem.endDate}
             onChange={(value) =>
-              updateOtherExperienceItem({
-                ...otherExperienceItem,
+              updateEducationalBackgroundItem({
+                ...educationalBackgroundItem,
                 endDate: value,
               })
             }

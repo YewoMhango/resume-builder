@@ -21,7 +21,7 @@ import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import ReactPhoneInput from "react-phone-input-material-ui";
 
-import { Gender, MaritalStatus, PersonalDetails } from "../../App";
+import { Gender, MaritalStatus, PersonalDetails } from "../../../App";
 
 export default function PersonalDetailsInputs({
   personalDetails,
@@ -54,7 +54,7 @@ export default function PersonalDetailsInputs({
         <Typography variant="h6">Personal Details</Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <TableContainer>
+        <TableContainer className="personal-details-table">
           <Table>
             <TableBody>
               <TableRow>

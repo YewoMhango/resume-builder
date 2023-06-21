@@ -10,33 +10,33 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { Add, Delete, DragHandle, ExpandMore } from "@mui/icons-material";
+import { ExpandMore, Add, Delete, DragHandle } from "@mui/icons-material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { arrayMoveImmutable } from "array-move";
 import { Container, Draggable } from "@smooth-dnd/react";
 
-import { WorkExperienceItem } from "../../App";
-import DatePickerWithClearButton from "./DatePickerWithClearButton";
+import { OtherExperienceItem } from "../../../App";
+import DatePickerWithClearButton from "../DatePickerWithClearButton";
 
-export default function WorkExperience({
-  workExperience,
-  setWorkExperience,
+export default function OtherExperience({
+  otherExperience,
+  setOtherExperience,
 }: {
-  workExperience: WorkExperienceItem[];
-  setWorkExperience: (newValue: WorkExperienceItem[]) => void;
+  otherExperience: OtherExperienceItem[];
+  setOtherExperience: (newValue: OtherExperienceItem[]) => void;
 }) {
-  const addNewWorkExperience = () => {
-    setWorkExperience([
-      ...workExperience,
-      { institution: "", position: "", endDate: null, startDate: null },
+  const addNewOtherExperience = () => {
+    setOtherExperience([
+      ...otherExperience,
+      { place: "", work: "", endDate: null, startDate: null },
     ]);
   };
 
-  const updateWorkExperienceItem =
-    (index: number) => (workExperienceItem: WorkExperienceItem) => {
-      let newWorkExperiences = [...workExperience];
-      newWorkExperiences[index] = workExperienceItem;
-      setWorkExperience(newWorkExperiences);
+  const updateOtherExperienceItem =
+    (index: number) => (otherExperienceItem: OtherExperienceItem) => {
+      let newOtherExperiences = [...otherExperience];
+      newOtherExperiences[index] = otherExperienceItem;
+      setOtherExperience(newOtherExperiences);
     };
 
   const onDrop = ({
@@ -46,8 +46,8 @@ export default function WorkExperience({
     removedIndex: number | null;
     addedIndex: number | null;
   }) => {
-    setWorkExperience(
-      arrayMoveImmutable(workExperience, removedIndex || 0, addedIndex || 0)
+    setOtherExperience(
+      arrayMoveImmutable(otherExperience, removedIndex || 0, addedIndex || 0)
     );
   };
 
@@ -55,10 +55,10 @@ export default function WorkExperience({
     <Accordion defaultExpanded>
       <AccordionSummary
         aria-controls="panel4a-content"
-        id="work-experience-header"
+        id="other-experiences-header"
         expandIcon={<ExpandMore />}
       >
-        <Typography variant="h6">Work Experience</Typography>
+        <Typography variant="h6">Other Experiences</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <List>
@@ -67,15 +67,15 @@ export default function WorkExperience({
             lockAxis="y"
             onDrop={onDrop}
           >
-            {workExperience.map((workExperienceItem, index) => (
-              <Draggable key={JSON.stringify(workExperienceItem)}>
-                <WorkExperienceElement
+            {otherExperience.map((otherExperienceItem, index) => (
+              <Draggable key={JSON.stringify(otherExperienceItem)}>
+                <OtherExperienceElement
                   index={index}
-                  workExperienceItem={workExperienceItem}
-                  updateWorkExperienceItem={updateWorkExperienceItem(index)}
+                  otherExperienceItem={otherExperienceItem}
+                  updateOtherExperienceItem={updateOtherExperienceItem(index)}
                   deleteItem={() =>
-                    setWorkExperience(
-                      workExperience.filter((s) => s !== workExperienceItem)
+                    setOtherExperience(
+                      otherExperience.filter((s) => s !== otherExperienceItem)
                     )
                   }
                 />
@@ -86,9 +86,9 @@ export default function WorkExperience({
             <Button
               variant="outlined"
               startIcon={<Add />}
-              onClick={() => addNewWorkExperience()}
+              onClick={() => addNewOtherExperience()}
             >
-              Add Work Experience
+              Add Other Experience
             </Button>
           </ListItem>
         </List>
@@ -97,16 +97,16 @@ export default function WorkExperience({
   );
 }
 
-function WorkExperienceElement({
+function OtherExperienceElement({
   index,
   deleteItem,
-  updateWorkExperienceItem,
-  workExperienceItem,
+  updateOtherExperienceItem,
+  otherExperienceItem,
 }: {
   index: number;
   deleteItem: () => void;
-  workExperienceItem: WorkExperienceItem;
-  updateWorkExperienceItem: (workExperienceItem: WorkExperienceItem) => void;
+  otherExperienceItem: OtherExperienceItem;
+  updateOtherExperienceItem: (otherExperienceItem: OtherExperienceItem) => void;
 }) {
   return (
     <ListItem sx={{ alignItems: "flex-start" }}>
@@ -117,12 +117,12 @@ function WorkExperienceElement({
         <ListItem>
           <TextField
             variant="standard"
-            label="Institution"
-            defaultValue={workExperienceItem.institution}
+            label="Place"
+            defaultValue={otherExperienceItem.place}
             onBlur={(e) =>
-              updateWorkExperienceItem({
-                ...workExperienceItem,
-                institution: e.target.value,
+              updateOtherExperienceItem({
+                ...otherExperienceItem,
+                place: e.target.value,
               })
             }
           />
@@ -130,12 +130,12 @@ function WorkExperienceElement({
         <ListItem>
           <TextField
             variant="standard"
-            label="Position"
-            defaultValue={workExperienceItem.position}
+            label="Work"
+            defaultValue={otherExperienceItem.work}
             onBlur={(e) =>
-              updateWorkExperienceItem({
-                ...workExperienceItem,
-                position: e.target.value,
+              updateOtherExperienceItem({
+                ...otherExperienceItem,
+                work: e.target.value,
               })
             }
           />
@@ -143,10 +143,10 @@ function WorkExperienceElement({
         <ListItem>
           <DatePicker
             label="Start date"
-            value={workExperienceItem.startDate}
+            value={otherExperienceItem.startDate}
             onChange={(value) =>
-              updateWorkExperienceItem({
-                ...workExperienceItem,
+              updateOtherExperienceItem({
+                ...otherExperienceItem,
                 startDate: value,
               })
             }
@@ -156,10 +156,10 @@ function WorkExperienceElement({
         <ListItem>
           <DatePickerWithClearButton
             label="End date"
-            value={workExperienceItem.endDate}
+            value={otherExperienceItem.endDate}
             onChange={(value) =>
-              updateWorkExperienceItem({
-                ...workExperienceItem,
+              updateOtherExperienceItem({
+                ...otherExperienceItem,
                 endDate: value,
               })
             }

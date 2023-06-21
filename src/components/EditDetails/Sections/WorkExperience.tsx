@@ -10,34 +10,33 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { ExpandMore, Add, Delete, DragHandle } from "@mui/icons-material";
+import { Add, Delete, DragHandle, ExpandMore } from "@mui/icons-material";
 import { DatePicker } from "@mui/x-date-pickers";
 import { arrayMoveImmutable } from "array-move";
 import { Container, Draggable } from "@smooth-dnd/react";
 
-import { EducationalBackgroundItem } from "../../App";
-import DatePickerWithClearButton from "./DatePickerWithClearButton";
+import { WorkExperienceItem } from "../../../App";
+import DatePickerWithClearButton from "../DatePickerWithClearButton";
 
-export default function EducationalBackground({
-  educationalBackground,
-  setEducationalBackground,
+export default function WorkExperience({
+  workExperience,
+  setWorkExperience,
 }: {
-  educationalBackground: EducationalBackgroundItem[];
-  setEducationalBackground: (background: EducationalBackgroundItem[]) => void;
+  workExperience: WorkExperienceItem[];
+  setWorkExperience: (newValue: WorkExperienceItem[]) => void;
 }) {
-  const addNewEducationalBackground = () => {
-    setEducationalBackground([
-      ...educationalBackground,
-      { school: "", program: "", endDate: null, startDate: null },
+  const addNewWorkExperience = () => {
+    setWorkExperience([
+      ...workExperience,
+      { institution: "", position: "", endDate: null, startDate: null },
     ]);
   };
 
-  const updateEducationalBackgroundItem =
-    (index: number) =>
-    (educationalBackgroundItem: EducationalBackgroundItem) => {
-      let newEducationalBackgrounds = [...educationalBackground];
-      newEducationalBackgrounds[index] = educationalBackgroundItem;
-      setEducationalBackground(newEducationalBackgrounds);
+  const updateWorkExperienceItem =
+    (index: number) => (workExperienceItem: WorkExperienceItem) => {
+      let newWorkExperiences = [...workExperience];
+      newWorkExperiences[index] = workExperienceItem;
+      setWorkExperience(newWorkExperiences);
     };
 
   const onDrop = ({
@@ -47,23 +46,19 @@ export default function EducationalBackground({
     removedIndex: number | null;
     addedIndex: number | null;
   }) => {
-    setEducationalBackground(
-      arrayMoveImmutable(
-        educationalBackground,
-        removedIndex || 0,
-        addedIndex || 0
-      )
+    setWorkExperience(
+      arrayMoveImmutable(workExperience, removedIndex || 0, addedIndex || 0)
     );
   };
 
   return (
     <Accordion defaultExpanded>
       <AccordionSummary
-        aria-controls="panel3a-content"
-        id="educational-background-header"
+        aria-controls="panel4a-content"
+        id="work-experience-header"
         expandIcon={<ExpandMore />}
       >
-        <Typography variant="h6">Educational Background</Typography>
+        <Typography variant="h6">Work Experience</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <List>
@@ -72,19 +67,15 @@ export default function EducationalBackground({
             lockAxis="y"
             onDrop={onDrop}
           >
-            {educationalBackground.map((educationalBackgroundItem, index) => (
-              <Draggable key={JSON.stringify(educationalBackgroundItem)}>
-                <EducationalBackgroundElement
+            {workExperience.map((workExperienceItem, index) => (
+              <Draggable key={JSON.stringify(workExperienceItem)}>
+                <WorkExperienceElement
                   index={index}
-                  educationalBackgroundItem={educationalBackgroundItem}
-                  updateEducationalBackgroundItem={updateEducationalBackgroundItem(
-                    index
-                  )}
+                  workExperienceItem={workExperienceItem}
+                  updateWorkExperienceItem={updateWorkExperienceItem(index)}
                   deleteItem={() =>
-                    setEducationalBackground(
-                      educationalBackground.filter(
-                        (s) => s !== educationalBackgroundItem
-                      )
+                    setWorkExperience(
+                      workExperience.filter((s) => s !== workExperienceItem)
                     )
                   }
                 />
@@ -95,9 +86,9 @@ export default function EducationalBackground({
             <Button
               variant="outlined"
               startIcon={<Add />}
-              onClick={() => addNewEducationalBackground()}
+              onClick={() => addNewWorkExperience()}
             >
-              Add Education
+              Add Work Experience
             </Button>
           </ListItem>
         </List>
@@ -106,18 +97,16 @@ export default function EducationalBackground({
   );
 }
 
-function EducationalBackgroundElement({
+function WorkExperienceElement({
   index,
   deleteItem,
-  updateEducationalBackgroundItem,
-  educationalBackgroundItem,
+  updateWorkExperienceItem,
+  workExperienceItem,
 }: {
   index: number;
   deleteItem: () => void;
-  educationalBackgroundItem: EducationalBackgroundItem;
-  updateEducationalBackgroundItem: (
-    educationalBackgroundItem: EducationalBackgroundItem
-  ) => void;
+  workExperienceItem: WorkExperienceItem;
+  updateWorkExperienceItem: (workExperienceItem: WorkExperienceItem) => void;
 }) {
   return (
     <ListItem sx={{ alignItems: "flex-start" }}>
@@ -128,12 +117,12 @@ function EducationalBackgroundElement({
         <ListItem>
           <TextField
             variant="standard"
-            label="School"
-            defaultValue={educationalBackgroundItem.school}
+            label="Institution"
+            defaultValue={workExperienceItem.institution}
             onBlur={(e) =>
-              updateEducationalBackgroundItem({
-                ...educationalBackgroundItem,
-                school: e.target.value,
+              updateWorkExperienceItem({
+                ...workExperienceItem,
+                institution: e.target.value,
               })
             }
           />
@@ -141,12 +130,12 @@ function EducationalBackgroundElement({
         <ListItem>
           <TextField
             variant="standard"
-            label="Program"
-            defaultValue={educationalBackgroundItem.program}
+            label="Position"
+            defaultValue={workExperienceItem.position}
             onBlur={(e) =>
-              updateEducationalBackgroundItem({
-                ...educationalBackgroundItem,
-                program: e.target.value,
+              updateWorkExperienceItem({
+                ...workExperienceItem,
+                position: e.target.value,
               })
             }
           />
@@ -154,10 +143,10 @@ function EducationalBackgroundElement({
         <ListItem>
           <DatePicker
             label="Start date"
-            value={educationalBackgroundItem.startDate}
+            value={workExperienceItem.startDate}
             onChange={(value) =>
-              updateEducationalBackgroundItem({
-                ...educationalBackgroundItem,
+              updateWorkExperienceItem({
+                ...workExperienceItem,
                 startDate: value,
               })
             }
@@ -167,10 +156,10 @@ function EducationalBackgroundElement({
         <ListItem>
           <DatePickerWithClearButton
             label="End date"
-            value={educationalBackgroundItem.endDate}
+            value={workExperienceItem.endDate}
             onChange={(value) =>
-              updateEducationalBackgroundItem({
-                ...educationalBackgroundItem,
+              updateWorkExperienceItem({
+                ...workExperienceItem,
                 endDate: value,
               })
             }

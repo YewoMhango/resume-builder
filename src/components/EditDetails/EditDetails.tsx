@@ -1,14 +1,14 @@
 import { Container } from "@mui/material";
 
 import { ResumeData } from "../../App";
-import PersonalDetailsInputs from "./PersonalDetailsInputs";
-import EducationalBackground from "./EducationalBackground";
-import WorkExperience from "./WorkExperience";
-import Skills from "./Skills";
-import Referees from "./Referees";
-import AboutYou from "./AboutYou";
-import OtherExperience from "./OtherExperiences";
-import Languages from "./Languages";
+import AboutYou from "./Sections/AboutYou";
+import EducationalBackground from "./Sections/EducationalBackground";
+import Languages from "./Sections/Languages";
+import OtherExperience from "./Sections/OtherExperiences";
+import PersonalDetailsInputs from "./Sections/PersonalDetailsInputs";
+import Referees from "./Sections/Referees";
+import Skills from "./Sections/Skills";
+import WorkExperience from "./Sections/WorkExperience";
 
 export default function EditDetails({
   resumeData,
