@@ -16,6 +16,7 @@ import Preview from "./components/Preview/Preview";
 import TopToolbar from "./components/TopToolbar";
 import Footer from "./components/Footer";
 import { useDebouncedAction, useDocumentTitle } from "./components/Utils/Hooks";
+import LargeLoadingSpinner from "./components/LargeLoadingSpinner/LargeLoadingSpinner";
 
 export enum CurrentTab {
   Edit = "Edit",
@@ -222,7 +223,7 @@ export default function App() {
                   minHeight: "calc(100vh - 230px)",
                 }}
               >
-                <CircularProgress />
+                <LargeLoadingSpinner />
               </Box>
             </Container>
           )}
