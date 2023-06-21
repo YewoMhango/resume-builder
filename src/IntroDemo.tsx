@@ -20,19 +20,19 @@ let steps: Step[] = [
         <p>Write as many of your details as you feel necessary</p>
       </>
     ),
-    placement: "auto",
+    placement: "top-end",
     target: ".personal-details-table",
   },
   {
     content: (
       <>
         <p>
-          You are not required to fill in every single detail. Only the ones you
-          fill in will automatically be displayed on the CV
+          You are not required to fill in every single detail, but only the ones
+          you fill in will automatically be displayed on the CV
         </p>
       </>
     ),
-    placement: "auto",
+    placement: "top-end",
     target: ".personal-details-table",
   },
   {
@@ -44,7 +44,7 @@ let steps: Step[] = [
         </p>
       </>
     ),
-    placement: "bottom-end",
+    placement: "left-end",
     target: ".preview-button",
   },
   {
