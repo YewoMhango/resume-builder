@@ -3,6 +3,12 @@
   "name": "CV/Resume Builder",
   "icons": [
     {
+      "src": "/images/maskable_icon.png",
+      "sizes": "853x853",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
       "src": "/images/logo-512.png",
       "type": "image/png",
       "sizes": "512x512"
