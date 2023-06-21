@@ -22,7 +22,7 @@ export default function Footer() {
           </Grid>
           <Grid item xs={12}>
             <Typography color="textSecondary" variant="subtitle1">
-              <Link
+              {/* <Link
                 sx={{ color: "inherit", textDecorationColor: "currentcolor" }}
                 underline="always"
                 href="https://yewomhango.github.io"
@@ -30,7 +30,7 @@ export default function Footer() {
               >
                 Yewo Mhango
               </Link>
-              &nbsp; | &nbsp;
+              &nbsp; | &nbsp; */}
               <Link
                 sx={{ color: "inherit", textDecorationColor: "currentcolor" }}
                 underline="always"
