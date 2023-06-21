@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Box,
-  CircularProgress,
-  Container,
-  ThemeProvider,
-  createTheme,
-} from "@mui/material";
+import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 import { DateTime } from "luxon";
@@ -17,6 +11,7 @@ import TopToolbar from "./components/TopToolbar";
 import Footer from "./components/Footer";
 import { useDebouncedAction, useDocumentTitle } from "./components/Utils/Hooks";
 import LargeLoadingSpinner from "./components/LargeLoadingSpinner/LargeLoadingSpinner";
+import IntroDemo from "./IntroDemo";
 
 export enum CurrentTab {
   Edit = "Edit",
@@ -203,6 +198,7 @@ export default function App() {
           <TopToolbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
           {resumeData ? (
             <>
+              <IntroDemo />
               {currentTab === CurrentTab.Edit ? (
                 <EditDetails
                   resumeData={resumeData}

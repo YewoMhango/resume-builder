@@ -74,6 +74,7 @@ export default function TopToolbar({
               <InfoOutlined />
             </IconButton>
             <IconButton
+              className="print-button"
               size="large"
               edge="start"
               color="primary"
@@ -90,6 +91,7 @@ export default function TopToolbar({
               size="small"
             >
               <Button
+                className="edit-button"
                 variant={
                   currentTab === CurrentTab.Edit ? "contained" : undefined
                 }
@@ -98,6 +100,7 @@ export default function TopToolbar({
                 Edit
               </Button>
               <Button
+                className="preview-button"
                 variant={
                   currentTab === CurrentTab.Preview ? "contained" : undefined
                 }
