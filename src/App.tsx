@@ -3,6 +3,7 @@ import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 import { DateTime } from "luxon";
+import { useTour } from "@reactour/tour";
 
 import "./App.css";
 import EditDetails from "./components/EditDetails/EditDetails";
@@ -11,7 +12,6 @@ import TopToolbar from "./components/TopToolbar";
 import Footer from "./components/Footer";
 import { useDebouncedAction, useDocumentTitle } from "./components/Utils/Hooks";
 import LargeLoadingSpinner from "./components/LargeLoadingSpinner/LargeLoadingSpinner";
-import IntroDemo from "./IntroDemo";
 
 export enum CurrentTab {
   Edit = "Edit",
@@ -112,6 +112,7 @@ const theme = createTheme({
 export default function App() {
   let [currentTab, setCurrentTab] = useState(CurrentTab.Edit);
   let [resumeData, setResumeData] = useState<ResumeData | null>(null);
+  let { setIsOpen: setTourIsOpen } = useTour();
 
   useDocumentTitle(
     resumeData &&
@@ -122,6 +123,11 @@ export default function App() {
   );
 
   useEffect(() => {
+    if (!JSON.parse(localStorage.getItem("userHasViewedTour") || "false")) {
+      setTourIsOpen(true);
+      localStorage.setItem("userHasViewedTour", "true");
+    }
+
     const localData = JSON.parse(localStorage.getItem("resumeData") || "null");
 
     if (localData) {
@@ -198,7 +204,6 @@ export default function App() {
           <TopToolbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
           {resumeData ? (
             <>
-              <IntroDemo />
               {currentTab === CurrentTab.Edit ? (
                 <EditDetails
                   resumeData={resumeData}
