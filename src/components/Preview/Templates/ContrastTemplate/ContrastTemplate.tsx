@@ -135,7 +135,7 @@ function Languages({ languages }: { languages: string[] }) {
       <hr />
       <ul className={styles.languagesList}>
         {languages.map((language) => (
-          <li>{language}</li>
+          <li key={language}>{language}</li>
         ))}
       </ul>
     </>
