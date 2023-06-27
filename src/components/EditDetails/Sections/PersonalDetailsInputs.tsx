@@ -30,8 +30,11 @@ export default function PersonalDetailsInputs({
   personalDetails: PersonalDetails;
   setPersonalDetails: (details: PersonalDetails) => void;
 }) {
-  let updateField = (fieldName: keyof PersonalDetails, value: any) =>
-    setPersonalDetails({ ...personalDetails, [fieldName as string]: value });
+  let updateField = (fieldName: keyof PersonalDetails, value: any) => {
+    if (personalDetails[fieldName] != value) {
+      setPersonalDetails({ ...personalDetails, [fieldName as string]: value });
+    }
+  };
 
   // Have to register the languages you want to use
   countries.registerLocale(enLocale);

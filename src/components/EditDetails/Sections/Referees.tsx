@@ -15,6 +15,7 @@ import { arrayMoveImmutable } from "array-move";
 import { Container, Draggable } from "@smooth-dnd/react";
 
 import { Referee } from "../../../App";
+import { objectsEqual } from "../../Utils/Utils";
 
 export default function Referees({
   referees,
@@ -31,9 +32,11 @@ export default function Referees({
   };
 
   const updateRefereeItem = (index: number) => (referee: Referee) => {
-    let newReferees = [...referees];
-    newReferees[index] = referee;
-    setReferees(newReferees);
+    if (!objectsEqual(referees[index], referee)) {
+      let newReferees = [...referees];
+      newReferees[index] = referee;
+      setReferees(newReferees);
+    }
   };
 
   const onDrop = ({

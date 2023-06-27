@@ -17,6 +17,7 @@ import { Container, Draggable } from "@smooth-dnd/react";
 
 import { EducationalBackgroundItem } from "../../../App";
 import DatePickerWithClearButton from "../DatePickerWithClearButton";
+import { objectsEqual } from "../../Utils/Utils";
 
 export default function EducationalBackground({
   educationalBackground,
@@ -35,9 +36,13 @@ export default function EducationalBackground({
   const updateEducationalBackgroundItem =
     (index: number) =>
     (educationalBackgroundItem: EducationalBackgroundItem) => {
-      let newEducationalBackgrounds = [...educationalBackground];
-      newEducationalBackgrounds[index] = educationalBackgroundItem;
-      setEducationalBackground(newEducationalBackgrounds);
+      if (
+        !objectsEqual(educationalBackground[index], educationalBackgroundItem)
+      ) {
+        let newEducationalBackgrounds = [...educationalBackground];
+        newEducationalBackgrounds[index] = educationalBackgroundItem;
+        setEducationalBackground(newEducationalBackgrounds);
+      }
     };
 
   const onDrop = ({

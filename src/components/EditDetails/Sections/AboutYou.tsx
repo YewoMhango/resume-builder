@@ -28,7 +28,12 @@ export default function AboutYou({
         <Box sx={{ margin: "16px" }}>
           <TextField
             defaultValue={about}
-            onBlur={(e) => setAbout(e.target.value)}
+            onBlur={(e) => {
+              const newValue = e.target.value;
+              if (newValue != about) {
+                setAbout(newValue);
+              }
+            }}
             multiline
             minRows={4}
             variant="outlined"

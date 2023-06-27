@@ -38,9 +38,11 @@ export default function Languages({
   };
 
   const updateLanguage = (index: number, language: string) => {
-    let newLanguages = [...languages];
-    newLanguages[index] = language;
-    setLanguages(newLanguages);
+    if (languages[index] !== language) {
+      let newLanguages = [...languages];
+      newLanguages[index] = language;
+      setLanguages(newLanguages);
+    }
   };
 
   const onDrop = ({

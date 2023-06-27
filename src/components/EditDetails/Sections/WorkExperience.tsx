@@ -17,6 +17,7 @@ import { Container, Draggable } from "@smooth-dnd/react";
 
 import { WorkExperienceItem } from "../../../App";
 import DatePickerWithClearButton from "../DatePickerWithClearButton";
+import { objectsEqual } from "../../Utils/Utils";
 
 export default function WorkExperience({
   workExperience,
@@ -34,9 +35,11 @@ export default function WorkExperience({
 
   const updateWorkExperienceItem =
     (index: number) => (workExperienceItem: WorkExperienceItem) => {
-      let newWorkExperiences = [...workExperience];
-      newWorkExperiences[index] = workExperienceItem;
-      setWorkExperience(newWorkExperiences);
+      if (!objectsEqual(workExperience[index], workExperienceItem)) {
+        let newWorkExperiences = [...workExperience];
+        newWorkExperiences[index] = workExperienceItem;
+        setWorkExperience(newWorkExperiences);
+      }
     };
 
   const onDrop = ({

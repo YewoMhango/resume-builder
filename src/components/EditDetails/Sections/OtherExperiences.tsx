@@ -17,6 +17,7 @@ import { Container, Draggable } from "@smooth-dnd/react";
 
 import { OtherExperienceItem } from "../../../App";
 import DatePickerWithClearButton from "../DatePickerWithClearButton";
+import { objectsEqual } from "../../Utils/Utils";
 
 export default function OtherExperience({
   otherExperience,
@@ -34,9 +35,11 @@ export default function OtherExperience({
 
   const updateOtherExperienceItem =
     (index: number) => (otherExperienceItem: OtherExperienceItem) => {
-      let newOtherExperiences = [...otherExperience];
-      newOtherExperiences[index] = otherExperienceItem;
-      setOtherExperience(newOtherExperiences);
+      if (!objectsEqual(otherExperience[index], otherExperienceItem)) {
+        let newOtherExperiences = [...otherExperience];
+        newOtherExperiences[index] = otherExperienceItem;
+        setOtherExperience(newOtherExperiences);
+      }
     };
 
   const onDrop = ({

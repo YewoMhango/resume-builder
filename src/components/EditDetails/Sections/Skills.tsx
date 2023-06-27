@@ -38,9 +38,11 @@ export default function Skills({
   };
 
   const updateSkill = (index: number, skill: string) => {
-    let newSkills = [...skills];
-    newSkills[index] = skill;
-    setSkills(newSkills);
+    if (skills[index] !== skill) {
+      let newSkills = [...skills];
+      newSkills[index] = skill;
+      setSkills(newSkills);
+    }
   };
 
   const onDrop = ({
