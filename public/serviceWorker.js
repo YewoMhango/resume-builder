@@ -1,5 +1,6 @@
 var CACHE_NAME = "resume-builder";
 var urlsToCache = [
+  "/",
   "/CV.svg",
   "/fonts/Times New Roman/times new roman.ttf",
   "/fonts/Times New Roman/times new roman italic.ttf",
