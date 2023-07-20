@@ -30,5 +30,18 @@ export function objectsEqual<T extends { [key: string]: any }>(
       }
     }
   }
+
+  for (let key of Object.keys(second)) {
+    if (typeof second[key] === "object") {
+      if (!objectsEqual(first[key], second[key])) {
+        return false;
+      }
+    } else {
+      if (second[key] !== first[key]) {
+        return false;
+      }
+    }
+  }
+
   return true;
 }

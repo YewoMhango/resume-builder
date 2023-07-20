@@ -15,13 +15,13 @@ import {
   MenuItem,
 } from "@mui/material";
 import { ExpandMore } from "@mui/icons-material";
-import { DatePicker } from "@mui/x-date-pickers";
 import { DateTime } from "luxon";
 import countries from "i18n-iso-countries";
 import enLocale from "i18n-iso-countries/langs/en.json";
 import ReactPhoneInput from "react-phone-input-material-ui";
 
 import { Gender, MaritalStatus, PersonalDetails } from "../../../App";
+import DatePickerWithClearButton from "../DatePickerWithClearButton";
 
 export default function PersonalDetailsInputs({
   personalDetails,
@@ -107,8 +107,11 @@ export default function PersonalDetailsInputs({
                       labelId="gender-label"
                       label="Gender"
                       value={personalDetails.gender}
-                      onChange={(e) => updateField("gender", e.target.value)}
+                      onChange={(e) =>
+                        updateField("gender", e.target.value || null)
+                      }
                     >
+                      <MenuItem>I'd rather not say</MenuItem>
                       <MenuItem value={Gender.Male}>Male</MenuItem>
                       <MenuItem value={Gender.Female}>Female</MenuItem>
                     </Select>
@@ -120,7 +123,7 @@ export default function PersonalDetailsInputs({
                   <Typography>Birth date:</Typography>
                 </TableCell>
                 <TableCell>
-                  <DatePicker
+                  <DatePickerWithClearButton
                     label="Birth date"
                     value={personalDetails.birthDate}
                     onChange={(value) => updateField("birthDate", value)}
@@ -145,6 +148,7 @@ export default function PersonalDetailsInputs({
                         updateField("maritalStatus", e.target.value)
                       }
                     >
+                      <MenuItem>I'd rather not say</MenuItem>
                       <MenuItem value={MaritalStatus.Single}>Single</MenuItem>
                       <MenuItem value={MaritalStatus.Married}>Married</MenuItem>
                       <MenuItem value={MaritalStatus.Widowed}>Widowed</MenuItem>

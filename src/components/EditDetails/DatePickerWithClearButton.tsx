@@ -22,7 +22,7 @@ export default function DatePickerWithClearButton({
       sx={{
         display: "flex",
         flexDirection: "row",
-        alignItems: "flex-end",
+        alignItems: variant === "standard" ? "flex-end" : "center",
         width: "100%",
       }}
     >

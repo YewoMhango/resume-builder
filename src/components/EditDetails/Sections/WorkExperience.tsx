@@ -11,13 +11,13 @@ import {
   Typography,
 } from "@mui/material";
 import { Add, Delete, DragHandle, ExpandMore } from "@mui/icons-material";
-import { DatePicker } from "@mui/x-date-pickers";
 import { arrayMoveImmutable } from "array-move";
 import { Container, Draggable } from "@smooth-dnd/react";
 
 import { WorkExperienceItem } from "../../../App";
 import DatePickerWithClearButton from "../DatePickerWithClearButton";
 import { objectsEqual } from "../../Utils/Utils";
+import { EditableList } from "./EditableList";
 
 export default function WorkExperience({
   workExperience,
@@ -29,13 +29,19 @@ export default function WorkExperience({
   const addNewWorkExperience = () => {
     setWorkExperience([
       ...workExperience,
-      { institution: "", position: "", endDate: null, startDate: null },
+      {
+        institution: "",
+        position: "",
+        endDate: null,
+        startDate: null,
+        duties: [] as Array<string>,
+      },
     ]);
   };
 
   const updateWorkExperienceItem =
     (index: number) => (workExperienceItem: WorkExperienceItem) => {
-      if (!objectsEqual(workExperience[index], workExperienceItem)) {
+      if (!objectsEqual(workExperienceItem, workExperience[index])) {
         let newWorkExperiences = [...workExperience];
         newWorkExperiences[index] = workExperienceItem;
         setWorkExperience(newWorkExperiences);
@@ -144,7 +150,7 @@ function WorkExperienceElement({
           />
         </ListItem>
         <ListItem>
-          <DatePicker
+          <DatePickerWithClearButton
             label="Start date"
             value={workExperienceItem.startDate}
             onChange={(value) =>
@@ -153,7 +159,7 @@ function WorkExperienceElement({
                 startDate: value,
               })
             }
-            slotProps={{ textField: { variant: "standard" } }}
+            variant="standard"
           />
         </ListItem>
         <ListItem>
@@ -167,6 +173,27 @@ function WorkExperienceElement({
               })
             }
             variant="standard"
+          />
+        </ListItem>
+        <ListItem sx={{ pb: 0 }}>
+          <Typography>Duties performed:</Typography>
+        </ListItem>
+        <ListItem sx={{ pt: 0 }}>
+          <EditableList
+            items={
+              workExperienceItem.duties !== undefined
+                ? workExperienceItem.duties
+                : []
+            }
+            label="Duty"
+            size="small"
+            setItems={(items) =>
+              updateWorkExperienceItem({
+                ...workExperienceItem,
+                duties: items,
+              })
+            }
+            addButtonSxProps={{ borderRadius: "20px" }}
           />
         </ListItem>
       </List>

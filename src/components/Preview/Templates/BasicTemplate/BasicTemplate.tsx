@@ -166,7 +166,7 @@ function EducationalBackgroundSection({
                   <td>{element.school}</td>
                 </tr>
                 <tr>
-                  <td>Years</td>
+                  <td>Years:</td>
                   <td>
                     <DateRangeDisplay
                       startDate={element.startDate}
@@ -212,6 +212,16 @@ function WorkExperienceSection({
                       startDate={element.startDate}
                       endDate={element.endDate}
                     />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Duties:</td>
+                  <td>
+                    <ul style={{ paddingLeft: "15px" }}>
+                      {element.duties.map((value) => (
+                        <li style={{ paddingBottom: "0" }}>{value}</li>
+                      ))}
+                    </ul>
                   </td>
                 </tr>
               </li>

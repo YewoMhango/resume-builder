@@ -35,9 +35,9 @@ export type PersonalDetails = {
   firstName: string;
   lastName: string;
   occupation: string;
-  gender: Gender;
+  gender: Gender | null;
   birthDate: DateTime | null;
-  maritalStatus: MaritalStatus;
+  maritalStatus: MaritalStatus | null;
   nationality: string;
   cellPhone: string;
   email: string;
@@ -48,6 +48,7 @@ export type WorkExperienceItem = {
   position: string;
   startDate: DateTime | null;
   endDate: DateTime | null;
+  duties: Array<string>;
 };
 
 export type OtherExperienceItem = {
@@ -168,9 +169,9 @@ export default function App() {
           firstName: "",
           lastName: "",
           occupation: "",
-          gender: Gender.Male,
+          gender: null,
           birthDate: null,
-          maritalStatus: MaritalStatus.Single,
+          maritalStatus: null,
           nationality: "",
           cellPhone: "",
           email: "",

@@ -222,7 +222,9 @@ function Experience({
                 endDate={work.endDate}
               />
             </h4>
-            <div className={styles.subText}>{work.institution}</div>
+            <div className={styles.subText}>
+              {work.institution} &nbsp;({work.duties.join(", ")})
+            </div>
           </ListItem>
         ))}
       </ul>

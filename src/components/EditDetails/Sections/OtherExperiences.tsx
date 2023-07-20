@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import { ExpandMore, Add, Delete, DragHandle } from "@mui/icons-material";
-import { DatePicker } from "@mui/x-date-pickers";
 import { arrayMoveImmutable } from "array-move";
 import { Container, Draggable } from "@smooth-dnd/react";
 
@@ -144,7 +143,7 @@ function OtherExperienceElement({
           />
         </ListItem>
         <ListItem>
-          <DatePicker
+          <DatePickerWithClearButton
             label="Start date"
             value={otherExperienceItem.startDate}
             onChange={(value) =>
@@ -153,7 +152,7 @@ function OtherExperienceElement({
                 startDate: value,
               })
             }
-            slotProps={{ textField: { variant: "standard" } }}
+            variant="standard"
           />
         </ListItem>
         <ListItem>
