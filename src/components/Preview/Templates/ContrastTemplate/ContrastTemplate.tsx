@@ -208,10 +208,12 @@ function Experience({
             </div>
             <div className={styles.place}>{work.institution}</div>
             <div className={styles.work}>{work.position}</div>
-            <div className={styles.duties}>
-              <span style={{ fontWeight: 400 }}>Duties:</span>{" "}
-              {work.duties.join(", ")}
-            </div>
+            {work.duties ? (
+              <div className={styles.duties}>
+                <span style={{ fontWeight: 400 }}>Duties:</span>{" "}
+                {work.duties.join(", ")}
+              </div>
+            ) : null}
           </ListItem>
         ))}
       </ul>

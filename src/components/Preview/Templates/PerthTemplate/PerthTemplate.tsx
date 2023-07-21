@@ -223,7 +223,8 @@ function Experience({
               />
             </h4>
             <div className={styles.subText}>
-              {work.institution} &nbsp;({work.duties.join(", ")})
+              {work.institution} &nbsp;
+              {work.duties ? <>({work.duties.join(", ")})</> : null}
             </div>
           </ListItem>
         ))}

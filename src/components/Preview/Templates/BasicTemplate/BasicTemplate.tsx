@@ -161,19 +161,23 @@ function EducationalBackgroundSection({
                     <h3>{element.program}</h3>
                   </td>
                 </tr>
-                <tr>
-                  <td>School:</td>
-                  <td>{element.school}</td>
-                </tr>
-                <tr>
-                  <td>Years:</td>
-                  <td>
-                    <DateRangeDisplay
-                      startDate={element.startDate}
-                      endDate={element.endDate}
-                    />
-                  </td>
-                </tr>
+                {element.school ? (
+                  <tr>
+                    <td>School:</td>
+                    <td>{element.school}</td>
+                  </tr>
+                ) : null}
+                {element.startDate || element.endDate ? (
+                  <tr>
+                    <td>Years:</td>
+                    <td>
+                      <DateRangeDisplay
+                        startDate={element.startDate}
+                        endDate={element.endDate}
+                      />
+                    </td>
+                  </tr>
+                ) : null}
               </li>
             ))}
           </table>
@@ -201,29 +205,35 @@ function WorkExperienceSection({
                     <h3>{element.institution}</h3>
                   </td>
                 </tr>
-                <tr>
-                  <td>Position:</td>
-                  <td>{element.position}</td>
-                </tr>
-                <tr>
-                  <td>Years:</td>
-                  <td>
-                    <DateRangeDisplay
-                      startDate={element.startDate}
-                      endDate={element.endDate}
-                    />
-                  </td>
-                </tr>
-                <tr>
-                  <td>Duties:</td>
-                  <td>
-                    <ul style={{ paddingLeft: "15px" }}>
-                      {element.duties.map((value) => (
-                        <li style={{ paddingBottom: "0" }}>{value}</li>
-                      ))}
-                    </ul>
-                  </td>
-                </tr>
+                {element.position ? (
+                  <tr>
+                    <td>Position:</td>
+                    <td>{element.position}</td>
+                  </tr>
+                ) : null}
+                {element.startDate || element.endDate ? (
+                  <tr>
+                    <td>Years:</td>
+                    <td>
+                      <DateRangeDisplay
+                        startDate={element.startDate}
+                        endDate={element.endDate}
+                      />
+                    </td>
+                  </tr>
+                ) : null}
+                {element.duties ? (
+                  <tr>
+                    <td>Duties:</td>
+                    <td>
+                      <ul style={{ paddingLeft: "15px" }}>
+                        {element.duties.map((value) => (
+                          <li style={{ paddingBottom: "0" }}>{value}</li>
+                        ))}
+                      </ul>
+                    </td>
+                  </tr>
+                ) : null}
               </li>
             ))}
           </table>
@@ -251,19 +261,23 @@ function OtherExperienceSection({
                     <h3>{element.place}</h3>
                   </td>
                 </tr>
-                <tr>
-                  <td>Work:</td>
-                  <td>{element.work}</td>
-                </tr>
-                <tr>
-                  <td>Time:</td>
-                  <td>
-                    <DateRangeDisplay
-                      startDate={element.startDate}
-                      endDate={element.endDate}
-                    />
-                  </td>
-                </tr>
+                {element.work ? (
+                  <tr>
+                    <td>Work:</td>
+                    <td>{element.work}</td>
+                  </tr>
+                ) : null}
+                {element.startDate || element.endDate ? (
+                  <tr>
+                    <td>Time:</td>
+                    <td>
+                      <DateRangeDisplay
+                        startDate={element.startDate}
+                        endDate={element.endDate}
+                      />
+                    </td>
+                  </tr>
+                ) : null}
               </li>
             ))}
           </table>
