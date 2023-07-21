@@ -34,7 +34,7 @@ self.addEventListener("fetch", (event) => {
       if (response) {
         return response;
       }
-      return fetch(event.request);
+      return fetchAndUpdateCache(event.request);
     })
   );
 });
@@ -54,3 +54,29 @@ self.addEventListener("activate", (event) => {
     })
   );
 });
+
+// Fetch and update the cache with the latest version
+function fetchAndUpdateCache(request) {
+  return fetch(request)
+    .then(function (response) {
+      // Check if we received a valid response
+      if (!response || response.status !== 200 || response.type !== "basic") {
+        return response;
+      }
+
+      // Clone the response
+      var responseToCache = response.clone();
+
+      // Open the cache and put the new response in it
+      caches.open(CACHE_NAME).then(function (cache) {
+        cache.put(request, responseToCache);
+      });
+
+      return response;
+    })
+    .catch(function (error) {
+      console.error("Error fetching data:", error);
+      // You can customize the fallback response here
+      return new Response("Offline fallback response");
+    });
+}
