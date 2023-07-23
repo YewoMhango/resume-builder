@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Box, Container, ThemeProvider, createTheme } from "@mui/material";
+import {
+  Box,
+  Container,
+  Snackbar,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterLuxon } from "@mui/x-date-pickers/AdapterLuxon";
 import { DateTime } from "luxon";
@@ -12,6 +18,7 @@ import TopToolbar from "./components/TopToolbar";
 import Footer from "./components/Footer";
 import { useDebouncedAction, useDocumentTitle } from "./components/Utils/Hooks";
 import LargeLoadingSpinner from "./components/LargeLoadingSpinner/LargeLoadingSpinner";
+import { CURRENT_VERSION } from "./main";
 
 export enum CurrentTab {
   Edit = "Edit",
@@ -114,6 +121,17 @@ export default function App() {
   let [currentTab, setCurrentTab] = useState(CurrentTab.Edit);
   let [resumeData, setResumeData] = useState<ResumeData | null>(null);
   let { setIsOpen: setTourIsOpen } = useTour();
+  let [displayingUpdateIsAvailable, setDisplayingUpdateIsAvailable] =
+    useState(false);
+
+  useEffect(() => {
+    fetch(`version.txt?a=${Math.random()}`)
+      .then((response) => response.text())
+      .then((version) => {
+        console.log(version, CURRENT_VERSION);
+        setDisplayingUpdateIsAvailable(version.trim() != CURRENT_VERSION);
+      });
+  }, []);
 
   useDocumentTitle(
     resumeData &&
@@ -203,6 +221,13 @@ export default function App() {
       <LocalizationProvider dateAdapter={AdapterLuxon}>
         <Box>
           <TopToolbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
+          <Snackbar
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            open={displayingUpdateIsAvailable}
+            autoHideDuration={10_000}
+            onClose={() => setDisplayingUpdateIsAvailable(false)}
+            message="An update is available. Please refresh or restart this app to use the latest version"
+          />
           {resumeData ? (
             <>
               {currentTab === CurrentTab.Edit ? (

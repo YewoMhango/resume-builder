@@ -5,18 +5,7 @@ import { StepType, TourProvider } from "@reactour/tour";
 import App from "./App.tsx";
 import "./index.css";
 
-const CURRENT_VERSION = "0.1.2";
-
-// A simple update mechanism. When CURRENT_VERSION doesn't match
-// what has been deployed, then reload to display latest app
-fetch("version.txt")
-  .then((response) => response.text())
-  .then((version) => {
-    console.log(version);
-    if (version.trim() !== CURRENT_VERSION) {
-      location.reload();
-    }
-  });
+export const CURRENT_VERSION = "0.1.3";
 
 function TourContent({ children }: { children: ReactNode | ReactNode[] }) {
   return (
