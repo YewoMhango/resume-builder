@@ -33,7 +33,7 @@ export default function BasicTemplate({
       <h1>
         {personalDetails.firstName} {personalDetails.lastName}&nbsp;
         {(personalDetails.lastName || personalDetails.firstName) &&
-        personalDetails.occupation
+          personalDetails.occupation
           ? "–"
           : null}
         &nbsp;
@@ -222,7 +222,7 @@ function WorkExperienceSection({
                     </td>
                   </tr>
                 ) : null}
-                {element.duties ? (
+                {element.duties && element.duties.length > 0 ? (
                   <tr>
                     <td>Duties:</td>
                     <td>
