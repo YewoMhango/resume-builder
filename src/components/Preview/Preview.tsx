@@ -31,7 +31,7 @@ export default function Preview({ resumeData }: { resumeData: ResumeData }) {
   );
   let [templateConfig, setTemplateConfig] = useState<TemplateConfig>(
     JSON.parse(localStorage.getItem("templateConfig") || "null") ||
-      defaultTemplateConfiguration(resumeTemplate)
+    defaultTemplateConfiguration(resumeTemplate)
   );
 
   let updateTemplateConfig = (config: TemplateConfig) => {
@@ -91,7 +91,6 @@ export default function Preview({ resumeData }: { resumeData: ResumeData }) {
       <Box
         className={styles.previewPage}
         sx={{
-          overflowY: "scroll",
           width: "fit-content",
           maxWidth: "100%",
           backgroundColor: "white",

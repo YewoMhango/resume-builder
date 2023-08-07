@@ -5,7 +5,7 @@ import { StepType, TourProvider } from "@reactour/tour";
 import App from "./App.tsx";
 import "./index.css";
 
-export const CURRENT_VERSION = "0.1.4";
+export const CURRENT_VERSION = "0.1.5";
 
 function TourContent({ children }: { children: ReactNode | ReactNode[] }) {
   return (
