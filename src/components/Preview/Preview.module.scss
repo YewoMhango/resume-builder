@@ -1,5 +1,6 @@
 .preview-page {
   box-shadow: 0 0 10px #bbb;
+  overflow-x: scroll;
 }
 
 @media print {
@@ -9,5 +10,6 @@
 
   .preview-page {
     box-shadow: none;
+    overflow-x: auto;
   }
 }

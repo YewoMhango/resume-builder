@@ -6,7 +6,6 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-
 import { useState } from "react";
 
 import styles from "./Preview.module.scss";
@@ -61,7 +60,7 @@ export default function Preview({ resumeData }: { resumeData: ResumeData }) {
             <MenuItem value={Template.Perth}>Perth</MenuItem>
           </Select>
         </FormControl>
-        &nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;
         <FormControl sx={{ width: "100px" }} size="small">
           <InputLabel id="font-size-label">Font size</InputLabel>
           <Select
