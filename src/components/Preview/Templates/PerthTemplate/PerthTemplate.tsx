@@ -73,7 +73,9 @@ function LeftSection({ resumeData }: { resumeData: ResumeData }) {
   return (
     <div className={styles.leftSection}>
       <ContactDetails personalDetails={resumeData.personalDetails} />
-      <Education educationalBackground={resumeData.educationalBackground} />
+      <Education
+        educationalBackground={resumeData.educationalBackground}
+      />
       <Skills skills={resumeData.skills} />
       <Languages languages={resumeData.languages} />
     </div>
@@ -224,7 +226,9 @@ function Experience({
             </h4>
             <div className={styles.subText}>
               {work.institution} &nbsp;
-              {work.duties ? <>({work.duties.join(", ")})</> : null}
+              {work.duties && work.duties.length > 0 ? (
+                <>({work.duties.join(", ")})</>
+              ) : null}
             </div>
           </ListItem>
         ))}
@@ -270,7 +274,13 @@ function OtherExperiences({
 function VerticalSideLine() {
   return (
     <svg className={styles.leftLine}>
-      <rect x={0} y={0} height="100%" width={2} fill="currentColor"></rect>
+      <rect
+        x={0}
+        y={0}
+        height="100%"
+        width={2}
+        fill="currentColor"
+      ></rect>
     </svg>
   );
 }
@@ -281,7 +291,10 @@ function Referees({ referees }: { referees: Referee[] }) {
       <h3>Referees</h3>
       <div className={styles.refereesList}>
         {referees.map((referee) => (
-          <div className={styles.referee} key={JSON.stringify(referee)}>
+          <div
+            className={styles.referee}
+            key={JSON.stringify(referee)}
+          >
             <h4>{referee.name}</h4>
             <div>{referee.institution},</div>
             <div>{referee.address}</div>

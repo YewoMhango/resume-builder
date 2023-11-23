@@ -124,14 +124,17 @@ export default function App() {
   let [displayingUpdateIsAvailable, setDisplayingUpdateIsAvailable] =
     useState(false);
 
-  useEffect(() => {
-    fetch(`version.txt?a=${Math.random()}`)
-      .then((response) => response.text())
-      .then((version) => {
-        console.log(version, CURRENT_VERSION);
-        setDisplayingUpdateIsAvailable(version.trim() != CURRENT_VERSION);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`version.txt?a=${Math.random()}`)
+  //     .then((response) => response.text())
+  //     .then((version) => {
+  //       console.log(version, CURRENT_VERSION);
+  //       const updateAvailable = version.trim() != CURRENT_VERSION;
+  //       setDisplayingUpdateIsAvailable(updateAvailable);
+  //       if (updateAvailable) {
+  //       }
+  //     });
+  // }, []);
 
   useDocumentTitle(
     resumeData &&
@@ -147,7 +150,9 @@ export default function App() {
       localStorage.setItem("userHasViewedTour", "true");
     }
 
-    const localData = JSON.parse(localStorage.getItem("resumeData") || "null");
+    const localData = JSON.parse(
+      localStorage.getItem("resumeData") || "null"
+    );
 
     if (localData) {
       setResumeData({
@@ -158,25 +163,32 @@ export default function App() {
             localData.personalDetails.birthDate &&
             DateTime.fromISO(localData.personalDetails.birthDate),
         },
-        educationalBackground: (localData.educationalBackground || []).map(
-          (value: { startDate?: string; endDate?: string }) => ({
-            ...value,
-            startDate: value.startDate && DateTime.fromISO(value.startDate),
-            endDate: value.endDate && DateTime.fromISO(value.endDate),
-          })
-        ),
+        educationalBackground: (
+          localData.educationalBackground || []
+        ).map((value: { startDate?: string; endDate?: string }) => ({
+          ...value,
+          startDate:
+            value.startDate && DateTime.fromISO(value.startDate),
+          endDate: value.endDate && DateTime.fromISO(value.endDate),
+        })),
         workExperience: (localData.workExperience || []).map(
           (value: { startDate?: string; endDate?: string }) => ({
             ...value,
-            startDate: value.startDate && DateTime.fromISO(value.startDate),
-            endDate: value.endDate && DateTime.fromISO(value.endDate),
+            startDate:
+              value.startDate &&
+              DateTime.fromISO(value.startDate),
+            endDate:
+              value.endDate && DateTime.fromISO(value.endDate),
           })
         ),
         otherExperiences: (localData.otherExperiences || []).map(
           (value: { startDate?: string; endDate?: string }) => ({
             ...value,
-            startDate: value.startDate && DateTime.fromISO(value.startDate),
-            endDate: value.endDate && DateTime.fromISO(value.endDate),
+            startDate:
+              value.startDate &&
+              DateTime.fromISO(value.startDate),
+            endDate:
+              value.endDate && DateTime.fromISO(value.endDate),
           })
         ),
         languages: localData.languages ? localData.languages : [],
@@ -220,7 +232,10 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterLuxon}>
         <Box>
-          <TopToolbar currentTab={currentTab} setCurrentTab={setCurrentTab} />
+          <TopToolbar
+            currentTab={currentTab}
+            setCurrentTab={setCurrentTab}
+          />
           <Snackbar
             anchorOrigin={{ vertical: "top", horizontal: "center" }}
             open={displayingUpdateIsAvailable}
