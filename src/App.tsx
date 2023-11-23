@@ -18,7 +18,7 @@ import TopToolbar from "./components/TopToolbar";
 import Footer from "./components/Footer";
 import { useDebouncedAction, useDocumentTitle } from "./components/Utils/Hooks";
 import LargeLoadingSpinner from "./components/LargeLoadingSpinner/LargeLoadingSpinner";
-import { CURRENT_VERSION } from "./main";
+// import { CURRENT_VERSION } from "./main";
 
 export enum CurrentTab {
   Edit = "Edit",
